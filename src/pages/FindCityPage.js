@@ -1,12 +1,12 @@
 import SearchInput from '../UI/SearchInput/SearchInput';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 const FindCityPage = () => {
 
-  const [city, setCity] = useState(""); // 
+  // const [city, setCity] = useState(""); // 
   const enteredCity = (city) => { //
-    console.log('message', city); // start here
-    setCity(city)
+    // console.log('message', city); // start here
+    // setCity(city)
   }; //
 
   return (

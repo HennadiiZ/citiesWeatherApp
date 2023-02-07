@@ -10,18 +10,6 @@ import FindCityPage from './pages/FindCityPage';
 function App() {
   return (
     <div>
-      {/* <MainNavigationPage />
-      <Layout>
-        <Switch>
-          <Route path='/' exact={true}>
-             <AllCitiesPage />
-          </Route>
-          <Route path='/chosen-city'>
-            <ChosenCityPage />
-          </Route>
-        </Switch>
-      </Layout>   */}
-
       <HeaderNav />
       <Layout>
         <main>
@@ -34,17 +22,6 @@ function App() {
           </Routes>
         </main>
       </Layout>
-
-
-
-
-        {/* <Route path='/' exact={true}>
-             <AllCitiesPage />
-          </Route>
-          <Route path='/chosen-city'>
-            <ChosenCityPage />
-        </Route> */}
-    
     </div>
   );
 }

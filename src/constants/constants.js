@@ -14,5 +14,5 @@
 
 
 export const API_KEY = 'e07899b8ac29022c34d61a58f51cd3db';
-export const URL = 'https://api.openweathermap.org/data/2.5/';
+export const URL_city = 'https://api.openweathermap.org/data/2.5/';
 export const URL_list = 'http://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743&units=metric&APPID='
