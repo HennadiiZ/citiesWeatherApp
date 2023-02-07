@@ -1,6 +1,8 @@
 import classes from './CityDetails.module.css';
 import { useState, useEffect } from 'react';
-import { API_KEY, URL_list } from '../../constants/constants';
+// import { API_KEY, URL_list } from '../../constants/constants';
+
+import { fetchData } from '../../_lib/api';
 
 const CityDetails = (props) => {
 
@@ -10,23 +12,26 @@ const CityDetails = (props) => {
 
   useEffect(() => {
       setIsLoading(true);  
-      const fetchData = async () => {
-        const response = await fetch(`${URL_list}${API_KEY}`);
-        const data = await response.json();
-        setLoadedData(data.list);
-        setIsLoading(false);
-      };
-        
-      fetchData();                 
+    //   const fetchData = async () => {
+    //     const response = await fetch(`${URL_list}${API_KEY}`);
+    //     const data = await response.json();
+    //     setLoadedData(data.list);
+    //     setIsLoading(false);
+    //   };
+    //   fetchData();   
+    fetchData(setLoadedData, setIsLoading);              
   }, []);
 
   console.log(loadedData);
 
   const city = loadedData.find(item => item.id.toString() ===  props.cityId.replace(/\s|:/g,""));
 
-  if (!city) {
+  if (isLoading) {
     return <p>Loading...</p>;
-    // return <p>No city found!</p>;
+  }
+
+  if (!city && !isLoading) {
+    return <p>No city found!</p>;
   }
 
   return (

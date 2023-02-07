@@ -1,6 +1,7 @@
 import CitiesList from '../components/CitiesList/CitiesList';
-import { API_KEY, URL_list } from '../constants/constants';
+// import { API_KEY, URL_list } from '../constants/constants';
 import {  useState, useEffect } from 'react';
+import { fetchData } from '../_lib/api';
 
 const AllCitiesPage = () => {
   const [loadedData, setLoadedData] = useState([]);
@@ -9,14 +10,14 @@ const AllCitiesPage = () => {
 
   useEffect(() => {
     setIsLoading(true);  
-    const fetchData = async () => {
-      const response = await fetch(`${URL_list}${API_KEY}`);
-      const data = await response.json();
-      setLoadedData(data.list);
-      setIsLoading(false);
-    };
-        
-    fetchData();                 
+    // const fetchData = async () => {
+    //   const response = await fetch(`${URL_list}${API_KEY}`);
+    //   const data = await response.json();
+    //   setLoadedData(data.list);
+    //   setIsLoading(false);
+    // };
+    // fetchData();    
+    fetchData(setLoadedData, setIsLoading);              
   }, []);
 
   return (
