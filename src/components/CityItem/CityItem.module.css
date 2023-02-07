@@ -1,0 +1,21 @@
+.item {
+  /* margin: 1rem 0; */
+  /* border: 1px solid blue; */
+  padding: 10px;
+  /* max-width: 150px; */
+  /* width: 33.3333%; */
+  width: 300px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.item__body {
+  background: rgb(126, 151, 232);
+  height: 100%;
+}
+
+h3 {
+  margin: 0 ;
+}
