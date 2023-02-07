@@ -15,7 +15,8 @@ const CityDetails = (props) => {
 
   console.log(loadedData);
 
-  const city = loadedData.find(item => item.id.toString() ===  props.cityId.replace(/\s|:/g,""));
+  // const city = loadedData.find(item => item.id.toString() ===  props.cityId.replace(/\s|:/g,""));
+  const city = loadedData.find(item => +item.id ===  +props.cityId);
 
   if (isLoading) {
     return <p>Loading...</p>;
