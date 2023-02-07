@@ -37,7 +37,8 @@ const CityDetails = (props) => {
             <h3>{city.name}</h3>
             <p>{city.weather[0].description}</p>
             <img src={`http://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`} alt="Weather Icon"></img>
-            <p>Temperature: { Math.round(city.main.temp - 273)} &#8451;</p>
+            {/* <p>Temperature: { Math.round(city.main.temp - 273)} &#8451;</p> */}
+            <p>Temperature: { Math.round(city.main.temp)} &#8451;</p>
           </div>
           <div className={classes.actions}>
             <button>Update weater</button>
