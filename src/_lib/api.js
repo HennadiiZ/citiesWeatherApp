@@ -10,15 +10,14 @@ export const fetchData = async (setLoadedData, setIsLoading) => {
 
 
 //
-export const getACity = [];
-export const fetchCityByName = (city) => {
-  fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
-  )
-  .then((response) => response.json())
-  .then((data) => {
-    console.log('data', data);
-  })
-};
+// export const fetchCityByName = (city) => {
+//   fetch(
+//     `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+//   )
+//   .then((response) => response.json())
+//   .then((data) => {
+//     console.log('data', data);
+//   })
+// };
 
 

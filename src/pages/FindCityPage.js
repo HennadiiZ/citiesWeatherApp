@@ -1,52 +1,48 @@
 import SearchInput from '../UI/SearchInput/SearchInput';
-// import { Route, Routes, Navigate } from 'react-router-dom';
-// import { useState } from 'react';
 import CitiesList from '../components/CitiesList/CitiesList';
 import { useState, useEffect } from 'react';
-import { fetchCityByName, getACity } from '../_lib/api';
-
-
-const CITIES_DATA = [
-  { 
-    name: 'Calgary', 
-    weatherString: '+5', 
-    id: 'p1', 
-    main: {temp: 282.35, feels_like: 280.77, temp_min: 281.96, temp_max: 282.53, pressure: 1025},
-    weather: [{id: 804, main: 'Clouds', description: 'overcast clouds', icon: '03d'}] 
-  },
-]
+import { API_KEY } from '../constants/constants';
 
 const FindCityPage = () => {
   const [loadedData, setLoadedData] = useState([]);
   const [city, setCity] = useState("");
  
-  const enteredCity = (city) => { 
+  const enteredCityHandler = (city) => { 
     setCity(city);
   }; 
 
   useEffect(() => {
-
     if (city) {
-      fetchCityByName(city);
+      function fetchCityByName(city) {
+        fetch(
+          `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+        )
+        .then((response) => response.json())
+        .then((data) => {
 
-      //
-      console.log('getACity', getACity);
-      setLoadedData(getACity);
-      console.log('loadedData', loadedData);
-      //
+
+          const CITIES_DATA = []
+          CITIES_DATA.push(data);
+          setLoadedData(CITIES_DATA);
+
+          if (CITIES_DATA.length > 1) {
+            CITIES_DATA.shift();
+          }
+        });
+      };
+      fetchCityByName(city);
     }
-  }, [city, loadedData]);
-  
+  }, [city, loadedData]);  
 
   return (
     <>
       <p>Find City Page</p>
-      <SearchInput enteredCity={enteredCity}/>
+      <SearchInput enteredCity={enteredCityHandler}/>
       <hr />
-
-      { loadedData.length === 0 && (
-        <CitiesList cities={CITIES_DATA}/>
-      )}
+      <div style={{"margin": "10px", "background": "black", "display": "inline-block"}}>
+        <CitiesList cities={loadedData}/>
+        <button type='button'>Add city</button>
+      </div>
     </>
   );
 }
