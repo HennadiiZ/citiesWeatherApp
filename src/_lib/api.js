@@ -9,10 +9,6 @@ export const fetchData = async (setLoadedData, setIsLoading) => {
 };
 
 
-
-
-
-
 //
 export const getACity = [];
 export const fetchCityByName = (city) => {
@@ -22,11 +18,7 @@ export const fetchCityByName = (city) => {
   .then((response) => response.json())
   .then((data) => {
     console.log('data', data);
-    // getACity.push(data);
-    // console.log('getACity+++', getACity);
-    // console.log('getACity', getACity);
   })
-  
 };
 
 

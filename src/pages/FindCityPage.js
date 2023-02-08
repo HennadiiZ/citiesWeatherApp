@@ -1,5 +1,5 @@
 import SearchInput from '../UI/SearchInput/SearchInput';
-import { Route, Routes, Navigate } from 'react-router-dom';
+// import { Route, Routes, Navigate } from 'react-router-dom';
 // import { useState } from 'react';
 import CitiesList from '../components/CitiesList/CitiesList';
 import { useState, useEffect } from 'react';
