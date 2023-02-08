@@ -7,18 +7,20 @@ const SearchInput = ({ enteredCity }) => {
   const submitFormHandler = (event) => {
     event.preventDefault();
     searchCity = searchCityInputRef.current.value;
-    // console.log(searchCity);
+    console.log(searchCity);
     enteredCity(searchCity); // start here
   }
 
   return (
     <>
-    <label />
-    <input  
-      placeholder="Search a city ..." 
-      ref={searchCityInputRef}
-      onChange={submitFormHandler}
-    />
+    <label htmlFor='city'>Search for a city</label>
+      <input  
+        placeholder="Search for a city ..." 
+        id='city'
+        type='text'
+        ref={searchCityInputRef}
+        onChange={submitFormHandler}
+      />
     </>
   )
 };

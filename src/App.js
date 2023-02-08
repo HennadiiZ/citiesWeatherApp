@@ -15,10 +15,10 @@ function App() {
         <main>
           <Routes>
             <Route path="*" element={<Navigate to="/cities" replace />}/>
-            <Route path='/cities/' element={ <AllCitiesPage/> } />
+            <Route path='/cities/*' element={ <AllCitiesPage/> } />
             <Route path='/cities/:cityId' element={ <DetailsCityPage/> } />
             {/*  */}
-            <Route path='/find-city' element={ <FindCityPage/> } />
+            <Route path='/find-city/*' element={ <FindCityPage/> } />
           </Routes>
         </main>
       </Layout>
