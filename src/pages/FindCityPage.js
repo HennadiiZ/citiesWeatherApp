@@ -2,14 +2,23 @@ import SearchInput from '../UI/SearchInput/SearchInput';
 import CitiesList from '../components/CitiesList/CitiesList';
 import { useState, useEffect } from 'react';
 import { API_KEY } from '../constants/constants';
+import { useContext } from 'react';
+import DataContext from '../_store/data-context';
 
 const FindCityPage = () => {
   const [loadedData, setLoadedData] = useState([]);
   const [city, setCity] = useState("");
+  const cityCtx = useContext(DataContext);
  
   const enteredCityHandler = (city) => { 
     setCity(city);
   }; 
+
+  const addCityHandler = () => {
+    cityCtx.addCity(loadedData);
+    // console.log(loadedData);
+    console.log(cityCtx.cities);
+  };
 
   useEffect(() => {
     if (city) {
@@ -19,8 +28,6 @@ const FindCityPage = () => {
         )
         .then((response) => response.json())
         .then((data) => {
-
-
           const CITIES_DATA = []
           CITIES_DATA.push(data);
           setLoadedData(CITIES_DATA);
@@ -39,10 +46,10 @@ const FindCityPage = () => {
       <p>Find City Page</p>
       <SearchInput enteredCity={enteredCityHandler}/>
       <hr />
-      <div style={{"margin": "10px", "background": "black", "display": "inline-block"}}>
+      {loadedData.length > 0 && (<div style={{"margin": "10px", "background": "black", "display": "inline-block"}}>
         <CitiesList cities={loadedData}/>
-        <button type='button'>Add city</button>
-      </div>
+        <button type='button' onClick={addCityHandler}>Add city</button>
+      </div>)}
     </>
   );
 }

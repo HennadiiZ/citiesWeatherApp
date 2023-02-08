@@ -11,15 +11,15 @@ const DataContext = React.createContext({
 export const DataContextProvider = (props) => {
   const [addedCities, setAddedCities] = useState([]);
 
-  const addCityHandler = (favItem) => {
-    setAddedCities((prevFavItem) => {
-      return prevFavItem.concat(favItem);
+  const addCityHandler = (chosenCity) => {
+    setAddedCities((prevCity) => {
+      return prevCity.concat(chosenCity);
     });
   };
 
   const removeCityHandler = (itemId) => {
-    setAddedCities((prevFavItem) => {
-      return prevFavItem.filter(item => item.id !== itemId);
+    setAddedCities((prevCity) => {
+      return prevCity.filter(item => item.id !== itemId);
     });   
   };
 

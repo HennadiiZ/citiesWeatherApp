@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 const CityItem = (props) => {
   return (
     <li className={classes.item}>
-      {/* <Link to={`/cities/:${props.id}`} className={classes.link}> */}
       <Link to={`/cities/${props.id}`} className={classes.link}>
         <div className={classes.item__body}>
           <div className={classes.content}>
