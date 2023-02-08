@@ -7,7 +7,7 @@ const SearchInput = ({ enteredCity }) => {
   const submitFormHandler = (event) => {
     event.preventDefault();
     searchCity = searchCityInputRef.current.value;
-    console.log(searchCity);
+    // console.log(searchCity);
     enteredCity(searchCity); // start here
   }
 
@@ -19,7 +19,7 @@ const SearchInput = ({ enteredCity }) => {
         id='city'
         type='text'
         ref={searchCityInputRef}
-        onChange={submitFormHandler}
+        onBlur={submitFormHandler}
       />
     </>
   )
