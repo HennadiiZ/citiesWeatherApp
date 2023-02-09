@@ -5,7 +5,7 @@ const DataContext = React.createContext({
   totalCities: 0,
   addCity: (chosenCity) => {},
   removeCity: (id) => {},
-  selected: (id) => {}
+  itemIsSelected: (id) => {}
 });
 
 export const DataContextProvider = (props) => {
@@ -15,7 +15,6 @@ export const DataContextProvider = (props) => {
     setAddedCities((prevCity) => {
       return prevCity.concat(chosenCity);
     });
-    // setAddedCities(chosenCity);
   };
 
   const removeCityHandler = (itemId) => {
@@ -33,7 +32,7 @@ export const DataContextProvider = (props) => {
     totalCities: addedCities.length,
     addCity: addCityHandler,
     removeCity: removeCityHandler,
-    selected: itemIsSelectedHandler
+    itemIsSelected: itemIsSelectedHandler
   };
       
   return (
