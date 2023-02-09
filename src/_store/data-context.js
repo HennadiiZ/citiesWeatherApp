@@ -15,6 +15,7 @@ export const DataContextProvider = (props) => {
     setAddedCities((prevCity) => {
       return prevCity.concat(chosenCity);
     });
+    // setAddedCities(chosenCity);
   };
 
   const removeCityHandler = (itemId) => {
