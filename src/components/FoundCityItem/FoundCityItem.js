@@ -22,23 +22,6 @@ const FoundCityItem = ({city}) => {
       weather: city.weather,
       wind: city.wind
     });
-
-    // if (selectedCity) {
-    //   cityCtx.removeCity(city.id);
-    // } else {
-    // // cityCtx.addCity(city);
-    //   cityCtx.addCity({
-    //     cod: city.cod,
-    //     coord: city.coord,
-    //     id: city.id,
-    //     main: city.main,
-    //     name: city.name,
-    //     sys: city.sys,
-    //     timezone: city.timezone,
-    //     weather: city.weather,
-    //     wind: city.wind
-    //   });
-    // }
   };
 
   return (
@@ -52,7 +35,6 @@ const FoundCityItem = ({city}) => {
           {/* <p>Temperature: { Math.round(city.main.temp)} &#8451;</p> */}
         </div>
         <div className={classes.actions}>
-          {/* <button>Update weater</button> */}
           <button type='button' onClick={addOrRemoveCityHandler}>{selectedCity ? 'remove city' : 'Add city'}</button>
         </div>
       </div>

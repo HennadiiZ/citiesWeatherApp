@@ -1,17 +1,12 @@
 import SearchInput from '../UI/SearchInput/SearchInput';
-// import CitiesList from '../components/CitiesList/CitiesList';
 import { useState, useEffect } from 'react';
 import { API_KEY } from '../constants/constants';
-// import { useHistory, useNavigate  } from 'react-router-dom';
-// import { useContext } from 'react';
-// import DataContext from '../_store/data-context';
 
 import FoundCityItem from '../components/FoundCityItem/FoundCityItem';
 
 const FindCityPage = () => {
   const [loadedData, setLoadedData] = useState([]);
   const [city, setCity] = useState("");
-  // const history = useNavigate();
  
   const enteredCityHandler = (city) => { 
     setCity(city);
@@ -43,19 +38,9 @@ const FindCityPage = () => {
       <p>Find City Page</p>
       <SearchInput enteredCity={enteredCityHandler}/>
       <hr />
-      {/* {loadedData.length > 0 && (<div style={{"margin": "10px", "background": "black", "display": "inline-block"}}>
-        <CitiesList cities={loadedData}/>
-        <button type='button' onClick={addOrRemoveCityHandler}>Add city</button>
-      </div>)} */}
-
       { loadedData.map(item => (
-          <FoundCityItem city={item} key={item.id}/>
+        <FoundCityItem city={item} key={item.id}/>
       ))}
-
-      {/* { isLoading && <p>Loading...</p>} */}
-      {/* { !isLoading && (loadedData.map(item => (
-          <FoundCityItem city={item} key={item.id}/>
-      )))} */}
     </>
   );
 }
