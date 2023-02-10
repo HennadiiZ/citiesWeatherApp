@@ -8,22 +8,20 @@ const FoundCityItem = ({city}) => {
   const selectedCity = cityCtx.itemIsSelected(city.id);
   const history = useNavigate();
 
-
-
   const addCityHandler = () => {
     history('/cities/');
 
     const cityData = {
-        cod: city.cod,
-        coord: city.coord,
-        id: city.id,
-        main: city.main,
-        name: city.name,
-        sys: city.sys,
-        timezone: city.timezone,
-        weather: city.weather,
-        wind: city.wind
-      }
+      cod: city.cod,
+      coord: city.coord,
+      id: city.id,
+      main: city.main,
+      name: city.name,
+      sys: city.sys,
+      timezone: city.timezone,
+      weather: city.weather,
+      wind: city.wind
+    }
 
     cityCtx.addCity(cityData);
 

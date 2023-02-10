@@ -8,6 +8,7 @@ const CityItem = (props) => {
   };
   const deleteCityHandler = (e) => {
     e.preventDefault();
+
   };
   
   return (
@@ -17,9 +18,11 @@ const CityItem = (props) => {
           <div className={classes.content}>
             <h3>{props.name}</h3>
             <p>{props.weather[0].description}</p>
-            <img src={`http://openweathermap.org/img/wn/${props.weather[0].icon}@2x.png`} alt="Weather Icon"></img>
+            <img 
+              src={`http://openweathermap.org/img/wn/${props.weather[0].icon}@2x.png`} 
+              alt="Weather Icon"
+            />
             <p>Temperature: { Math.round(props.main.temp - 273)} &#8451;</p>
-            {/* <p>Temperature: { Math.round(props.main.temp)} &#8451;</p> */}
           </div>
           <div className={classes.actions}>
             <button type="button" onClick={updateWeaterHandler}>Update weater</button>

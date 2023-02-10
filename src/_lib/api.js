@@ -15,11 +15,10 @@ export const fetchData = async (setLoadedData, setIsLoading) => {
   const data = await response.json();
 
   const listOfCities = [];
-  setIsLoading(false);
-
   for(const key in data) {
     listOfCities.push(data[key]);
   }
+  setIsLoading(false);
   setLoadedData(listOfCities);
 };
 
