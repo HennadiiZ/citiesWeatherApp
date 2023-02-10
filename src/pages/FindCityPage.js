@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { API_KEY } from '../constants/constants';
 
 import FoundCityItem from '../components/FoundCityItem/FoundCityItem';
+import Container from '@mui/material/Container';
 
 const FindCityPage = () => {
   const [loadedData, setLoadedData] = useState([]);
@@ -34,14 +35,16 @@ const FindCityPage = () => {
   }, [city, loadedData]);  
 
   return (
-    <>
-      <p>Find City Page</p>
-      <SearchInput enteredCity={enteredCityHandler}/>
-      <hr />
-      { loadedData.map(item => (
-        <FoundCityItem city={item} key={item.id}/>
-      ))}
-    </>
+    <section>
+      <Container maxWidth="lg" component="main">
+        <p>Find City Page</p>
+        <SearchInput enteredCity={enteredCityHandler}/>
+        <hr />
+        { loadedData.map(item => (
+          <FoundCityItem city={item} key={item.id}/>
+        ))}
+      </Container>
+    </section>
   );
 }
 

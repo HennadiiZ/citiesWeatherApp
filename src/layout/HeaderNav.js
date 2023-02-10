@@ -1,12 +1,13 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import classes from './HeaderNav.module.css';
-import { Fragment } from 'react';
+// import { Fragment } from 'react';
 // 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import Container from '@mui/material/Container';
 
 const HeaderNav = () => {
   return (
@@ -34,6 +35,7 @@ const HeaderNav = () => {
         color="primary"
         elevation={0}
         sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}>
+      <Container maxWidth="lg" component="main">
       <Toolbar sx={{ flexWrap: 'wrap' }}>
           <Typography variant="p" color="inherit" noWrap sx={{ flexGrow: 1 }}>
           <Link className={classes.logo} to='/'>Cities Weather App</Link>
@@ -76,6 +78,7 @@ const HeaderNav = () => {
             </ul>
           </nav>
       </Toolbar>
+      </Container>
     </AppBar>
   </header> 
   );
