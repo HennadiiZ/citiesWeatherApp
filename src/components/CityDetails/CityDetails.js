@@ -13,7 +13,7 @@ const CityDetails = (props) => {
     fetchData(setLoadedData, setIsLoading);              
   }, []);
 
-  console.log(loadedData);
+  // console.log(loadedData);
 
   const city = loadedData.find(item => +item.id ===  +props.cityId); // will change item.id from loadedData here
 

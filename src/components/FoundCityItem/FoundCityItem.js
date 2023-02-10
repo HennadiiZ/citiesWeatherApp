@@ -8,20 +8,33 @@ const FoundCityItem = ({city}) => {
   const selectedCity = cityCtx.itemIsSelected(city.id);
   const history = useNavigate();
 
-  const addOrRemoveCityHandler = () => {
+
+
+  const addCityHandler = () => {
     history('/cities/');
 
-    cityCtx.addCity({
-      cod: city.cod,
-      coord: city.coord,
-      id: city.id,
-      main: city.main,
-      name: city.name,
-      sys: city.sys,
-      timezone: city.timezone,
-      weather: city.weather,
-      wind: city.wind
-    });
+    const cityData = {
+        cod: city.cod,
+        coord: city.coord,
+        id: city.id,
+        main: city.main,
+        name: city.name,
+        sys: city.sys,
+        timezone: city.timezone,
+        weather: city.weather,
+        wind: city.wind
+      }
+
+    cityCtx.addCity(cityData);
+
+    fetch(
+      'https://locations-8d6c2-default-rtdb.firebaseio.com/cities.json',
+      {
+        method: 'POST',
+        body: JSON.stringify(cityData),
+        headers: {'Content-Type': 'application/json'}
+      }
+    );
   };
 
   return (
@@ -35,7 +48,7 @@ const FoundCityItem = ({city}) => {
           {/* <p>Temperature: { Math.round(city.main.temp)} &#8451;</p> */}
         </div>
         <div className={classes.actions}>
-          <button type='button' onClick={addOrRemoveCityHandler}>{selectedCity ? 'remove city' : 'Add city'}</button>
+          <button type='button' onClick={addCityHandler}>{selectedCity ? 'remove city' : 'Add city'}</button>
         </div>
       </div>
     </div>

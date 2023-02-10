@@ -11,10 +11,16 @@ import { API_KEY, URL_list } from '../constants/constants';
 
 
 export const fetchData = async (setLoadedData, setIsLoading) => {
-  const response = await fetch(`${URL_list}${API_KEY}`);
+  const response = await fetch('https://locations-8d6c2-default-rtdb.firebaseio.com/cities.json');
   const data = await response.json();
-  setLoadedData(data.list);
+
+  const listOfCities = [];
   setIsLoading(false);
+
+  for(const key in data) {
+    listOfCities.push(data[key]);
+  }
+  setLoadedData(listOfCities);
 };
 
 
