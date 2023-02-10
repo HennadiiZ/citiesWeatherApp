@@ -42,7 +42,7 @@ const HeaderNav = () => {
           </Typography>
           <nav>
             <ul>
-              <li>
+              {/* <li>
                 <Link
                   variant="button"
                   color="text.primary"
@@ -52,8 +52,8 @@ const HeaderNav = () => {
                 >
                   Cities
                 </Link>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <Link
                   variant="button"
                   color="text.primary"
@@ -63,7 +63,7 @@ const HeaderNav = () => {
                 >
                   No City
                 </Link>
-              </li>
+              </li> */}
               <li>
               <Link
                 variant="button"
@@ -72,7 +72,7 @@ const HeaderNav = () => {
                 sx={{ my: 1, mx: 1.5 }}
                 to='/find-city'
               >
-                find City
+                Find City
               </Link>
               </li>
             </ul>
