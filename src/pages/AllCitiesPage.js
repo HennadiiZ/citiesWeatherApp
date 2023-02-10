@@ -19,8 +19,9 @@ const AllCitiesPage = () => {
   return (
     <section>
       {isLoading && 'Loading...'}
-      {!isLoading && loadedData.length === 0 && <p>No added cities.</p>}
+      {/* {!isLoading && loadedData.length === 0 && <p>No added cities.</p>} */}
       {/* {!isLoading && loadedData.length > 0 && <CitiesList cities={loadedData}/>} */}
+      {!isLoading && cityCtx.cities.length === 0 && <p>No added cities.</p>}
       {!isLoading && loadedData.length > 0 && <CitiesList cities={cityCtx.cities}/>}
     </section>  
   );
