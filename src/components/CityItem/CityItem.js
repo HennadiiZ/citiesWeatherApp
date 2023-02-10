@@ -2,6 +2,14 @@ import classes from './CityItem.module.css';
 import { Link } from 'react-router-dom';
 
 const CityItem = (props) => {
+
+  const updateWeaterHandler = (e) => {
+    e.preventDefault();
+  };
+  const deleteCityHandler = (e) => {
+    e.preventDefault();
+  };
+  
   return (
     <li className={classes.item}>
       <Link to={`/cities/${props.id}`} className={classes.link}>
@@ -14,7 +22,10 @@ const CityItem = (props) => {
             {/* <p>Temperature: { Math.round(props.main.temp)} &#8451;</p> */}
           </div>
           <div className={classes.actions}>
-            <button>Update weater</button>
+            <button type="button" onClick={updateWeaterHandler}>Update weater</button>
+          </div>
+          <div className={classes.actions}>
+            <button type="button" onClick={deleteCityHandler}>Delete city</button>
           </div>
         </div>
       </Link>
