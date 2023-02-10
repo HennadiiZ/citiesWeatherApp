@@ -37,8 +37,9 @@ const FindCityPage = () => {
   return (
     <section>
       <Container maxWidth="lg" component="main">
-        <p>Find City Page</p>
-        <SearchInput enteredCity={enteredCityHandler}/>
+        <div style={{"margin": "15px 0"}}>
+          <SearchInput enteredCity={enteredCityHandler}/>
+        </div>
         <hr />
         { loadedData.map(item => (
           <FoundCityItem city={item} key={item.id}/>

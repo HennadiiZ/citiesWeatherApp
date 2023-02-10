@@ -14,7 +14,7 @@ const SearchInput = ({ enteredCity }) => {
     <>
     {/* <label htmlFor="">Search for a city</label> */}
       <input  
-        placeholder="Search for a city ..." 
+        placeholder="Find a city ..." 
         id="city"
         type='text'
         ref={searchCityInputRef}
