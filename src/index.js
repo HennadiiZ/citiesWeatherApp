@@ -18,3 +18,6 @@ root.render(
 );
 
 // reportWebVitals();
+
+// Default installation // npm install @mui/material @emotion/react @emotion/styled
+// Icons //  npm install @mui/icons-material

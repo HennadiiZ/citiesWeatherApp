@@ -8,8 +8,6 @@ import { API_KEY, URL_list } from '../constants/constants';
 //   setIsLoading(false);
 // };
 
-
-
 export const fetchData = async (setLoadedData, setIsLoading) => {
   const response = await fetch('https://locations-8d6c2-default-rtdb.firebaseio.com/cities.json');
   const data = await response.json();
