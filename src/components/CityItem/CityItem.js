@@ -88,10 +88,10 @@ const CityItem = (props) => {
           </Box> 
         </CardContent>
         <CardActions sx={{ backgroundColor: '#bbdefb' }}>
-          <Button fullWidth color="primary">
+          <Button fullWidth color="primary" onClick={updateWeaterHandler}>
             Update 
           </Button>
-          <Button fullWidth color="error">
+          <Button fullWidth color="error" onClick={deleteCityHandler}>
             Delete
           </Button>
         </CardActions>
