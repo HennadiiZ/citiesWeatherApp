@@ -1,6 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
 import classes from './HeaderNav.module.css';
-import SearchInput from '../UI/SearchInput/SearchInput';
 
 const HeaderNav = () => {
   return (
@@ -12,11 +11,7 @@ const HeaderNav = () => {
             <NavLink to='/cities'>Cities</NavLink>
           </li>
           <li>
-            <NavLink to='/cities/:cityId'>City</NavLink>
-          </li>
-          <li>
-            {/* <SearchInput enteredCity={enteredCity}/> // start here */}
-            <SearchInput />
+            <NavLink to='/cities/:cityId'>No City</NavLink>
           </li>
           <li>
             <NavLink to='/find-city'>find City</NavLink> {/* // start here */}

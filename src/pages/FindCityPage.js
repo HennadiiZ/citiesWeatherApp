@@ -1,38 +1,46 @@
 import SearchInput from '../UI/SearchInput/SearchInput';
-import { Route, Routes, Navigate } from 'react-router-dom';
-// import { useState } from 'react';
-import CitiesList from '../components/CitiesList/CitiesList';
-import {  useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { API_KEY } from '../constants/constants';
 
-
-const CITIES_DATA = [
-    { 
-      name: 'Calgary', 
-      weatherString: '+5', 
-      id: 'p1', 
-      main: {temp: 282.35, feels_like: 280.77, temp_min: 281.96, temp_max: 282.53, pressure: 1025},
-      weather: [{id: 804, main: 'Clouds', description: 'overcast clouds', icon: '03d'}] 
-    },
-]
+import FoundCityItem from '../components/FoundCityItem/FoundCityItem';
 
 const FindCityPage = () => {
   const [loadedData, setLoadedData] = useState([]);
+  const [city, setCity] = useState("");
+ 
+  const enteredCityHandler = (city) => { 
+    setCity(city);
+  }; 
 
-  // const [city, setCity] = useState(""); // 
-  const enteredCity = (city) => { //
-    // console.log('message', city); // start here
-    // setCity(city)
-  }; //
+  useEffect(() => {
+    if (city) {
+      function fetchCityByName(city) {
+        fetch(
+          `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+        )
+        .then((response) => response.json())
+        .then((data) => {
+          const CITIES_DATA = []
+          CITIES_DATA.push(data);
+          setLoadedData(CITIES_DATA);
+
+          if (CITIES_DATA.length > 1) {
+            CITIES_DATA.shift();
+          }
+        });
+      };
+      fetchCityByName(city);
+    }
+  }, [city, loadedData]);  
 
   return (
     <>
       <p>Find City Page</p>
-      <SearchInput enteredCity={enteredCity}/>
+      <SearchInput enteredCity={enteredCityHandler}/>
       <hr />
-
-      { loadedData.length === 0 && (
-        <CitiesList cities={CITIES_DATA}/>
-      )}
+      { loadedData.map(item => (
+        <FoundCityItem city={item} key={item.id}/>
+      ))}
     </>
   );
 }

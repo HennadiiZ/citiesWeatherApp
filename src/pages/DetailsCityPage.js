@@ -4,7 +4,7 @@ import React from 'react'
 
 const DetailsCityPage = () => {
   const params = useParams();
-  console.log(params.cityId);
+  // console.log(params.cityId);
 
   return (
     <React.Fragment>
