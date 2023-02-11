@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import TextField from '@mui/material/TextField';
 
 const SearchInput = ({ enteredCity }) => {
   const searchCityInputRef = useRef();
@@ -12,16 +13,27 @@ const SearchInput = ({ enteredCity }) => {
 
   return (
     <>
-    {/* <label htmlFor="">Search for a city</label> */}
-      <input  
-        placeholder="Search for a city ..." 
-        id="city"
+      <TextField 
+        id="outlined-basic" 
+        label="Search for a city ..." 
+        variant="outlined" 
         type='text'
-        ref={searchCityInputRef}
+        inputRef={searchCityInputRef}
         onBlur={submitFormHandler}
+        fullWidth
       />
     </>
   )
 };
 
 export default SearchInput;
+
+/* 
+<input  
+  placeholder="Search for a city ..." 
+  id="city"
+  type='text'
+  ref={searchCityInputRef}
+  onBlur={submitFormHandler}
+/> 
+*/

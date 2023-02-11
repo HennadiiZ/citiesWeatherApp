@@ -1,10 +1,10 @@
 .header {
-  height: 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #316bc3;
-  padding: 0 10%;
+  /* height: 5rem; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  /* background-color: #316bc3;
+  padding: 0 10%; */
 }
 
 .logo {
@@ -18,21 +18,21 @@
   margin: 0;
   padding: 0;
   display: flex;
-  align-items: baseline;
+  /* align-items: baseline; */
 }
 
 .header li {
-  margin-left: 3rem;
+  margin-left: 20px;
 }
 
 .header a, .header NavLink {
   text-decoration: none;
-  font-size: 1.5rem;
-  color: #fcb8d2;
+  font-size: 18px;
+  color: #fff;
 }
 
 .header a:hover,
 .header a:active,
 .header a.active {
-  color: white;
+  color: rgb(143, 193, 254);
 }

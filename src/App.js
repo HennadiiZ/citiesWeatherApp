@@ -3,7 +3,8 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import AllCitiesPage from './pages/AllCitiesPage';
 import DetailsCityPage from './pages/DetailsCityPage';
 import HeaderNav from './layout/HeaderNav';
-import Layout from './layout/Layout';
+// import Layout from './layout/Layout';
+import Container from '@mui/material/Container';
 
 import FindCityPage from './pages/FindCityPage';
 
@@ -11,7 +12,8 @@ function App() {
   return (
     <div>
       <HeaderNav />
-      <Layout>
+      {/* <Layout> */}
+      <Container maxWidth="lg" component="main">
         <main>
           <Routes>
             <Route path="*" element={<Navigate to="/cities" replace />}/>
@@ -20,7 +22,8 @@ function App() {
             <Route path='/find-city/*' element={ <FindCityPage/> } />
           </Routes>
         </main>
-      </Layout>
+      {/* </Layout> */}
+      </Container>
     </div>
   );
 }
