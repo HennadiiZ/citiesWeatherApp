@@ -72,7 +72,7 @@ const HeaderNav = () => {
                 sx={{ my: 1, mx: 1.5 }}
                 to='/find-city'
               >
-                Find Cities
+                Search For Cities
               </Link>
               </li>
             </ul>

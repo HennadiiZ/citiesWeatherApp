@@ -85,6 +85,8 @@ const CityItem = (props) => {
             }}
           >
             <p>Temperature: { Math.round(props.main.temp - 273)} &#8451;</p>
+            <hr />
+            <p>Timezone: { props.main.temp } </p>
           </Box> 
         </CardContent>
         <CardActions sx={{ backgroundColor: '#bbdefb' }}>
