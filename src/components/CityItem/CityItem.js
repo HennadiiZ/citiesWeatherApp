@@ -19,6 +19,11 @@ const CityItem = (props) => {
     e.preventDefault();
 
   };
+
+  // console.log(props);
+
+  // const currentTime = moment().tz(props.timezone);
+  // const localTime = currentTime.clone().local();
   
   return (
     // <li className={classes.item}>
@@ -42,7 +47,6 @@ const CityItem = (props) => {
     //     </div>
     //   </Link>
     // </li>
-
 
   <li className={classes.item}>
     <Link to={`/cities/${props.id}`} className={classes.link}>
@@ -86,7 +90,8 @@ const CityItem = (props) => {
           >
             <p>Temperature: { Math.round(props.main.temp - 273)} &#8451;</p>
             <hr />
-            <p>Timezone: { props.main.temp } </p>
+            {/* <p>Timezone: { props.timezone }</p> */}
+            <p>Timezone: { `${props.timezone }:00 ` } </p>
           </Box> 
         </CardContent>
         <CardActions sx={{ backgroundColor: '#bbdefb' }}>

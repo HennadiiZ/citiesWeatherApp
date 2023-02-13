@@ -29,9 +29,9 @@ const CitiesList = (props) => {
             key={item.id}
             id={item.id}
             name={item.name}
-            weatherString={item.weatherString}
             weather={item.weather}
             main={item.main}
+            timezone={item.timezone}
           />
          ))
         }
