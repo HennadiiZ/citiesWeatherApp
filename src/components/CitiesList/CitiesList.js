@@ -32,6 +32,7 @@ const CitiesList = (props) => {
             weather={item.weather}
             main={item.main}
             timezone={item.timezone}
+            dt={item.dt}
           />
          ))
         }

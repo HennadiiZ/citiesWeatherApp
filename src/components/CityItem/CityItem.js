@@ -1,7 +1,6 @@
 import classes from './CityItem.module.css';
 import { Link } from 'react-router-dom';
 
-
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,6 +8,8 @@ import CardHeader from '@mui/material/CardHeader';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+
+
 
 const CityItem = (props) => {
 
@@ -20,12 +21,27 @@ const CityItem = (props) => {
 
   };
 
-  // console.log(props);
+  const unix_timestamp = props.dt;
+  const date = new Date(unix_timestamp * 1000);
+  // console.log( date.getDate() );
+  // console.log( date.getMonth() );
+  // console.log( date.getTime() );
+  // console.log( '------------' );
+  // console.log( date.getHours(), ':', date.getMinutes() );
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+ 
 
-  // const currentTime = moment().tz(props.timezone);
-  // const localTime = currentTime.clone().local();
-  // first commit
-  
+
+
+
+
+
+
+
+
+
+
   return (
     // <li className={classes.item}>
     //   <Link to={`/cities/${props.id}`} className={classes.link}>
@@ -91,8 +107,7 @@ const CityItem = (props) => {
           >
             <p>Temperature: { Math.round(props.main.temp - 273)} &#8451;</p>
             <hr />
-            {/* <p>Timezone: { props.timezone }</p> */}
-            <p>Timezone: { `${props.timezone }:00 ` } </p>
+            <p>{`${hours}:${minutes}`}</p>
           </Box> 
         </CardContent>
         <CardActions sx={{ backgroundColor: '#bbdefb' }}>

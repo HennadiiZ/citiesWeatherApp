@@ -17,6 +17,8 @@ const AllCitiesPage = () => {
     fetchData(setLoadedData, setIsLoading);              
   }, []);
 
+  // console.log(loadedData);
+
   return (
     <section>
       <Container maxWidth="lg" component="main">

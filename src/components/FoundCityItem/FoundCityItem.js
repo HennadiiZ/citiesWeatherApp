@@ -16,6 +16,11 @@ const FoundCityItem = ({city}) => {
   const selectedCity = cityCtx.itemIsSelected(city.id);
   const history = useNavigate();
 
+  const unix_timestamp = city.dt;
+  const date = new Date(unix_timestamp * 1000);
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
   const addCityHandler = () => {
     history('/cities/');
 
@@ -23,12 +28,16 @@ const FoundCityItem = ({city}) => {
       cod: city.cod,
       coord: city.coord,
       id: city.id,
+      dt: city.dt, 
       main: city.main,
       name: city.name,
       sys: city.sys,
       timezone: city.timezone,
       weather: city.weather,
-      wind: city.wind
+      wind: city.wind,
+      base: city.base,
+      visibility: city.visibility,
+      clouds: city.clouds
     }
 
     cityCtx.addCity(cityData);
@@ -94,9 +103,12 @@ const FoundCityItem = ({city}) => {
           sx={{
             display: 'flex',
             justifyContent: 'center',
+            alignItems: 'center'
           }}
         >
-          <p>Temperature: { Math.round(city.main.temp - 273)} &#8451;</p>
+          <h3 style={{marginRight: '10px'}}>{ Math.round(city.main.temp - 273)} &#8451;</h3>
+          {/* <hr /> */}
+          <p>{`${hours}:${minutes}`}</p>
         </Box> 
       </CardContent>
       <CardActions sx={{ backgroundColor: '#bbdefb' }}>

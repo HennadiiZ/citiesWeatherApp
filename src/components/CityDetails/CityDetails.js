@@ -13,7 +13,6 @@ import Button from '@mui/material/Button';
 import ErrorTwoToneIcon from '@mui/icons-material/ErrorTwoTone';
 
 const CityDetails = (props) => {
-
   const [loadedData, setLoadedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,6 +22,41 @@ const CityDetails = (props) => {
   }, []);
 
   const city = loadedData.find(item => +item.id ===  +props.cityId); 
+
+  // const unix_timestamp = city.dt;
+  const unix_timestamp = city.dt;
+  const date = new Date(unix_timestamp * 1000);
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  let day;
+
+  switch (date.getDay()) {
+    case 0:
+      day = "Sunday";
+      break;
+    case 1:
+      day = "Monday";
+      break;
+    case 2:
+      day = "Tuesday";
+      break;
+    case 3:
+      day = "Wednesday";
+      break;
+    case 4:
+      day = "Thursday";
+      break;
+    case 5:
+      day = "Friday";
+      break;
+    case 6:
+      day = "Saturday";
+      break;
+    default:
+      day = '';
+      break;
+  }
+
   if (isLoading) {
     return (
       <section className={classes.item__alert}>
@@ -99,7 +133,17 @@ const CityDetails = (props) => {
               justifyContent: 'center',
             }}
           >
-            <p>Temperature: { Math.round(city.main.temp - 273)} &#8451;</p>
+            <p>Temperature: <b>{ Math.round(city.main.temp - 273)} &#8451;</b></p>
+          </Box> 
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <h3 style={{marginRight: '10px'}}>{`${hours}:${minutes}`}</h3>
+            <p> {day} </p>
           </Box> 
         </CardContent>
       </Card>
