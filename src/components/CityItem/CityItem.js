@@ -8,8 +8,7 @@ import CardHeader from '@mui/material/CardHeader';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
-
+import { TEMP_CNV } from '../../constants/constants';
 
 const CityItem = (props) => {
 
@@ -31,17 +30,6 @@ const CityItem = (props) => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
  
-
-
-
-
-
-
-
-
-
-
-
   return (
     // <li className={classes.item}>
     //   <Link to={`/cities/${props.id}`} className={classes.link}>
@@ -105,7 +93,7 @@ const CityItem = (props) => {
               justifyContent: 'center',
             }}
           >
-            <p>Temperature: { Math.round(props.main.temp - 273)} &#8451;</p>
+            <p>Temperature: { Math.round(props.main.temp - TEMP_CNV)} &#8451;</p>
             <hr />
             <p>{`${hours}:${minutes}`}</p>
           </Box> 

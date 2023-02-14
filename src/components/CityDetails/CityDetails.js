@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ErrorTwoToneIcon from '@mui/icons-material/ErrorTwoTone';
+import { TEMP_CNV } from '../../constants/constants';
 
 const CityDetails = (props) => {
   const [loadedData, setLoadedData] = useState([]);
@@ -24,11 +25,19 @@ const CityDetails = (props) => {
   const city = loadedData.find(item => +item.id ===  +props.cityId); 
 
   // const unix_timestamp = city.dt;
-  const unix_timestamp = city.dt;
+  // const cityInfo = {dt: '', main: ''};
+  const cityInfo = city;
+  const unix_timestamp = cityInfo?.dt;
   const date = new Date(unix_timestamp * 1000);
   const hours = date.getHours();
   const minutes = date.getMinutes();
+  const humidity = cityInfo?.main?.humidity;
+  const feelsLike = Math.round(cityInfo?.main?.feels_like - TEMP_CNV);
   let day;
+
+  // console.log(city.main);
+  // console.log(city.main.humidity);
+  // console.log(Math.round(city.main.feels_like - TEMP_CNV));
 
   switch (date.getDay()) {
     case 0:
@@ -131,9 +140,20 @@ const CityDetails = (props) => {
             sx={{
               display: 'flex',
               justifyContent: 'center',
+              alignItems: 'center'
             }}
           >
-            <p>Temperature: <b>{ Math.round(city.main.temp - 273)} &#8451;</b></p>
+            <p style={{marginRight: '20px'}}>Temperature: <b>{ Math.round(city.main.temp - TEMP_CNV)} &#8451;</b></p>
+            <small>Fells like: { feelsLike } &#8451;</small>
+          </Box> 
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <small>Humidity: { humidity } &#8451;</small>
           </Box> 
           <Box
             sx={{

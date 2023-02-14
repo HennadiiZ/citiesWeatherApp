@@ -10,6 +10,7 @@ import CardHeader from '@mui/material/CardHeader';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { TEMP_CNV } from "../../constants/constants";
 
 const FoundCityItem = ({city}) => {
   const cityCtx = useContext(DataContext);
@@ -106,7 +107,7 @@ const FoundCityItem = ({city}) => {
             alignItems: 'center'
           }}
         >
-          <h3 style={{marginRight: '10px'}}>{ Math.round(city.main.temp - 273)} &#8451;</h3>
+          <h3 style={{marginRight: '10px'}}>{ Math.round(city.main.temp - TEMP_CNV)} &#8451;</h3>
           {/* <hr /> */}
           <p>{`${hours}:${minutes}`}</p>
         </Box> 
