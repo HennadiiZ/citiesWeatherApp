@@ -9,16 +9,33 @@ import { API_KEY, CITIES_fb, URL_city } from '../constants/constants';
 // };
 
 export const fetchCities = async (setLoadedData, setIsLoading) => {
-  // const response = await fetch('https://locations-8d6c2-default-rtdb.firebaseio.com/cities.json');
-  const response = await fetch(`${CITIES_fb}`);
-  const data = await response.json();
 
-  const listOfCities = [];
-  for(const key in data) {
-    listOfCities.push(data[key]);
+  // const response = await fetch(`${CITIES_fb}`);
+  // const data = await response.json();
+
+  // const listOfCities = [];
+  // for(const key in data) {
+  //   listOfCities.push(data[key]);
+  // }
+  // setIsLoading(false);
+  // setLoadedData(listOfCities);
+
+  try {
+    const response = await fetch(`${CITIES_fb}`);
+    if (!response.ok) {
+      throw new Error("Cities not found");
+    }
+    const data = await response.json();
+  
+    const listOfCities = [];
+    for(const key in data) {
+      listOfCities.push(data[key]);
+    }
+    setIsLoading(false);
+    setLoadedData(listOfCities);
+  } catch (error) {
+    console.error("Error:", error.message);
   }
-  setIsLoading(false);
-  setLoadedData(listOfCities);
 };
 
 
