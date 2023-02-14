@@ -1,8 +1,8 @@
-import classes from './FoundCityItem.module.css';
-import { useContext } from 'react';
-import DataContext from '../../_store/data-context'; 
+// import classes from './FoundCityItem.module.css';
+// import { useContext } from 'react';
+// import DataContext from '../../_store/data-context'; 
 import { useNavigate  } from 'react-router-dom';
-
+import { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -11,12 +11,23 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { TEMP_CNV, CITIES_fb } from "../../constants/constants";
-import { addCityToList } from '../../_lib/api';
+import { addCityToList, fetchCities } from '../../_lib/api';
 
 const FoundCityItem = ({city}) => {
-  const cityCtx = useContext(DataContext);
-  const selectedCity = cityCtx.itemIsSelected(city.id);
+  // const cityCtx = useContext(DataContext);
+  // const selectedCity = cityCtx.itemIsSelected(city.id);
+
+
   const history = useNavigate();
+
+  //----
+  const [loadedData, setLoadedData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    setIsLoading(true);  
+    fetchCities(setLoadedData, setIsLoading);              
+  }, []);
+  //----
 
   const unix_timestamp = city.dt;
   const date = new Date(unix_timestamp * 1000);
@@ -40,20 +51,16 @@ const FoundCityItem = ({city}) => {
       base: city.base,
       visibility: city.visibility,
       clouds: city.clouds
+    };
+    // cityCtx.addCity(cityData);
+    // -----------------------------------------------
+    for(const key of loadedData) {
+      if ( +key.id === +cityData.id) {
+        return;
+      } 
     }
-
-    cityCtx.addCity(cityData);
-
-    // fetch(
-    //   // 'https://locations-8d6c2-default-rtdb.firebaseio.com/cities.json',
-    //   `${CITIES_fb}`,
-    //   {
-    //     method: 'POST',
-    //     body: JSON.stringify(cityData),
-    //     headers: {'Content-Type': 'application/json'}
-    //   }
-    // );
-    addCityToList(cityData)
+    // -----------------------------------------------
+    addCityToList(cityData);
   };
 
   return (

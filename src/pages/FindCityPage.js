@@ -9,7 +9,7 @@ import { fetchCityByName } from '../_lib/api';
 const FindCityPage = () => {
   const [loadedData, setLoadedData] = useState([]);
   const [city, setCity] = useState("");
-  const [isError, setIsError] = useState(false);
+  // const [isError, setIsError] = useState(false);
  
   const enteredCityHandler = (city) => { 
     setCity(city);
@@ -17,32 +17,15 @@ const FindCityPage = () => {
 
   useEffect(() => {
     if (city) {
-      // function fetchCityByName(city) {
-      //   fetch(
-      //     // `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
-      //     `${URL_city}${city}&appid=${API_KEY}`
-      //   )
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     const CITIES_DATA = []
-      //     CITIES_DATA.push(data);
-      //     setLoadedData(CITIES_DATA);
-
-      //     if (CITIES_DATA.length > 1) {
-      //       CITIES_DATA.shift();
-      //     }
-      //   });
-      // };
-
       fetchCityByName(city, setLoadedData);
     }
   }, [city, loadedData]);  
 
-  if (isError) {
-    return (
-      <p>No such city found.</p>
-    )
-  }
+  // if (isError) {
+  //   return (
+  //     <p>No such city found.</p>
+  //   )
+  // }
 
   return (
     <section>
