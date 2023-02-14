@@ -77,7 +77,17 @@ export function addCityToList(cityData) {
       body: JSON.stringify(cityData),
       headers: {'Content-Type': 'application/json'}
     }
-  );
+  )
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Dreadful error");
+    }
+    return response.json();
+  })
+  .catch(error => {
+    console.log('error !!!!!!');
+    console.error(error);
+  });
 }
 
 
