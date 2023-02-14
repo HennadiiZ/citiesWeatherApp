@@ -1,25 +1,6 @@
 import { API_KEY, CITIES_fb, URL_city } from '../constants/constants';
-
-// working!!!
-// export const fetchData = async (setLoadedData, setIsLoading) => {
-//   const response = await fetch(`${URL_list}${API_KEY}`);
-//   const data = await response.json();
-//   setLoadedData(data.list);
-//   setIsLoading(false);
-// };
-
+//1
 export const fetchCities = async (setLoadedData, setIsLoading) => {
-
-  // const response = await fetch(`${CITIES_fb}`);
-  // const data = await response.json();
-
-  // const listOfCities = [];
-  // for(const key in data) {
-  //   listOfCities.push(data[key]);
-  // }
-  // setIsLoading(false);
-  // setLoadedData(listOfCities);
-
   try {
     const response = await fetch(`${CITIES_fb}`);
     if (!response.ok) {
@@ -37,13 +18,9 @@ export const fetchCities = async (setLoadedData, setIsLoading) => {
     console.error("Error:", error.message);
   }
 };
-
-
+//2
 export function fetchCityByName(city, setLoadedData) {
-  fetch(
-    // `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
-    `${URL_city}${city}&appid=${API_KEY}`
-  )
+  fetch(`${URL_city}${city}&appid=${API_KEY}`)
   .then((response) => {
 
     if (!response.ok) {
@@ -55,22 +32,16 @@ export function fetchCityByName(city, setLoadedData) {
   .then((data) => {
     const CITIES_DATA = []
     CITIES_DATA.push(data);
-    setLoadedData(CITIES_DATA)
-
-    // if (CITIES_DATA.length > 1) {
-    //   CITIES_DATA.shift();
-    // }
+    setLoadedData(CITIES_DATA);
   })
   .catch(error => {
     console.log('error');
     console.error(error);
   });
 };
-
-
+//3
 export function addCityToList(cityData) {
   fetch(
-    // 'https://locations-8d6c2-default-rtdb.firebaseio.com/cities.json',
     `${CITIES_fb}`,
     {
       method: 'POST',
@@ -88,18 +59,4 @@ export function addCityToList(cityData) {
     console.log('error !!!!!!');
     console.error(error);
   });
-}
-
-
-//
-// export const fetchCityByName = (city) => {
-//   fetch(
-//     `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
-//   )
-//   .then((response) => response.json())
-//   .then((data) => {
-//     console.log('data', data);
-//   })
-// };
-
-
+};
