@@ -1,15 +1,11 @@
 import classes from './CityDetails.module.css';
 import { useState, useEffect } from 'react';
-
 import { fetchCities } from '../../_lib/api';
-
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import ErrorTwoToneIcon from '@mui/icons-material/ErrorTwoTone';
 import { TEMP_CNV } from '../../constants/constants';
 
@@ -24,8 +20,6 @@ const CityDetails = (props) => {
 
   const city = loadedData.find(item => +item.id ===  +props.cityId); 
 
-  // const unix_timestamp = city.dt;
-  // const cityInfo = {dt: '', main: ''};
   const cityInfo = city;
   const unix_timestamp = cityInfo?.dt;
   const date = new Date(unix_timestamp * 1000);
@@ -34,10 +28,6 @@ const CityDetails = (props) => {
   const humidity = cityInfo?.main?.humidity;
   const feelsLike = Math.round(cityInfo?.main?.feels_like - TEMP_CNV);
   let day;
-
-  // console.log(city.main);
-  // console.log(city.main.humidity);
-  // console.log(Math.round(city.main.feels_like - TEMP_CNV));
 
   switch (date.getDay()) {
     case 0:
@@ -88,21 +78,6 @@ const CityDetails = (props) => {
   }
 
   return (
-    // <section>
-    //   City Details
-    //   <div className={classes.item__body}>
-    //       <div className={classes.content}>
-    //         <h3>{city.name}</h3>
-    //         <p>{city.weather[0].description}</p>
-    //         <img src={`http://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`} alt="Weather Icon"></img>
-    //         <p>Temperature: { Math.round(city.main.temp - 273)} &#8451;</p>
-    //       </div>
-    //       <div className={classes.actions}>
-    //         <button>Update weater</button>
-    //       </div>
-    //     </div>
-    // </section>
-
     <section className={classes.item}>
       <Card>
         <CardHeader

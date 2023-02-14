@@ -10,7 +10,7 @@ import CardHeader from '@mui/material/CardHeader';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { TEMP_CNV, CITIES_fb } from "../../constants/constants";
+import { TEMP_CNV } from "../../constants/constants";
 import { addCityToList, fetchCities } from '../../_lib/api';
 
 const FoundCityItem = ({city}) => {
@@ -20,14 +20,14 @@ const FoundCityItem = ({city}) => {
 
   const history = useNavigate();
 
-  //----
+  //---- 
   const [loadedData, setLoadedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setIsLoading(true);  
     fetchCities(setLoadedData, setIsLoading);              
   }, []);
-  //----
+  //---- 
 
   const unix_timestamp = city.dt;
   const date = new Date(unix_timestamp * 1000);
@@ -53,7 +53,7 @@ const FoundCityItem = ({city}) => {
       clouds: city.clouds
     };
     // cityCtx.addCity(cityData);
-    // -----------------------------------------------
+    // ----------------------------------------------- preventing from adding same cities
     for(const key of loadedData) {
       if ( +key.id === +cityData.id) {
         return;
@@ -64,20 +64,6 @@ const FoundCityItem = ({city}) => {
   };
 
   return (
-    // <div className={classes.item} style={{"margin": "10px", "background": "gray", "display": "inline-block"}}>
-    //   <div className={classes.item__body}>
-    //     <div className={classes.content}>
-    //       <h3>{city.name}</h3>
-    //       <p>{city.weather[0].description}</p>
-    //       <img src={`http://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`} alt="Weather Icon"></img>
-    //       <p>Temperature: { Math.round(city.main.temp - 273)} &#8451;</p>
-    //     </div>
-    //     <div className={classes.actions}>
-    //       <button type='button' onClick={addCityHandler}>{selectedCity ? 'remove city' : 'Add city'}</button>
-    //     </div>
-    //   </div>
-    // </div>
-
     <Card>
       <CardHeader
         title={city.name}

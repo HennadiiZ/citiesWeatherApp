@@ -4,21 +4,6 @@ import Grid from '@mui/material/Grid';
 
 const CitiesList = (props) => {
   return (
-    // <ul className={classes.list}>
-    //   { 
-    //     props.cities.map(item =>(
-    //     <CityItem 
-    //       key={item.id}
-    //       id={item.id}
-    //       name={item.name}
-    //       weatherString={item.weatherString}
-    //       weather={item.weather}
-    //       main={item.main}
-    //     />
-    //    ))
-    //   }
-    // </ul>
-
     <ul className={classes.list}>
       <Grid
         container
