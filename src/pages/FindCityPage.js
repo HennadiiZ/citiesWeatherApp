@@ -9,6 +9,7 @@ import { fetchCityByName } from '../_lib/api';
 const FindCityPage = () => {
   const [loadedData, setLoadedData] = useState([]);
   const [city, setCity] = useState("");
+  const [isError, setIsError] = useState(false);
  
   const enteredCityHandler = (city) => { 
     setCity(city);
@@ -32,9 +33,16 @@ const FindCityPage = () => {
       //     }
       //   });
       // };
+
       fetchCityByName(city, setLoadedData);
     }
   }, [city, loadedData]);  
+
+  if (isError) {
+    return (
+      <p>No such city found.</p>
+    )
+  }
 
   return (
     <section>

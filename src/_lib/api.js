@@ -27,15 +27,26 @@ export function fetchCityByName(city, setLoadedData) {
     // `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
     `${URL_city}${city}&appid=${API_KEY}`
   )
-  .then((response) => response.json())
+  .then((response) => {
+
+    if (!response.ok) {
+      throw new Error("City not found");
+    }
+
+    return response.json()
+  })
   .then((data) => {
     const CITIES_DATA = []
     CITIES_DATA.push(data);
-    setLoadedData(CITIES_DATA);
+    setLoadedData(CITIES_DATA)
 
-    if (CITIES_DATA.length > 1) {
-      CITIES_DATA.shift();
-    }
+    // if (CITIES_DATA.length > 1) {
+    //   CITIES_DATA.shift();
+    // }
+  })
+  .catch(error => {
+    console.log('error');
+    console.error(error);
   });
 };
 
