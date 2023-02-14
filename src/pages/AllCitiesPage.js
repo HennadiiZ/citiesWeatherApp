@@ -1,6 +1,6 @@
 import CitiesList from '../components/CitiesList/CitiesList';
 import {  useState, useEffect } from 'react';
-import { fetchData } from '../_lib/api';
+import { fetchCities } from '../_lib/api';
 import Container from '@mui/material/Container';
 
 // import { useContext } from 'react';
@@ -14,7 +14,7 @@ const AllCitiesPage = () => {
 
   useEffect(() => {
     setIsLoading(true);    
-    fetchData(setLoadedData, setIsLoading);              
+    fetchCities(setLoadedData, setIsLoading);              
   }, []);
 
   // console.log(loadedData);

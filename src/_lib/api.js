@@ -1,4 +1,4 @@
-import { API_KEY, URL_list } from '../constants/constants';
+import { API_KEY, CITIES_fb, URL_city } from '../constants/constants';
 
 // working!!!
 // export const fetchData = async (setLoadedData, setIsLoading) => {
@@ -8,8 +8,9 @@ import { API_KEY, URL_list } from '../constants/constants';
 //   setIsLoading(false);
 // };
 
-export const fetchData = async (setLoadedData, setIsLoading) => {
-  const response = await fetch('https://locations-8d6c2-default-rtdb.firebaseio.com/cities.json');
+export const fetchCities = async (setLoadedData, setIsLoading) => {
+  // const response = await fetch('https://locations-8d6c2-default-rtdb.firebaseio.com/cities.json');
+  const response = await fetch(`${CITIES_fb}`);
   const data = await response.json();
 
   const listOfCities = [];
@@ -19,6 +20,37 @@ export const fetchData = async (setLoadedData, setIsLoading) => {
   setIsLoading(false);
   setLoadedData(listOfCities);
 };
+
+
+export function fetchCityByName(city, setLoadedData) {
+  fetch(
+    // `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+    `${URL_city}${city}&appid=${API_KEY}`
+  )
+  .then((response) => response.json())
+  .then((data) => {
+    const CITIES_DATA = []
+    CITIES_DATA.push(data);
+    setLoadedData(CITIES_DATA);
+
+    if (CITIES_DATA.length > 1) {
+      CITIES_DATA.shift();
+    }
+  });
+};
+
+
+export function addCityToList(cityData) {
+  fetch(
+    // 'https://locations-8d6c2-default-rtdb.firebaseio.com/cities.json',
+    `${CITIES_fb}`,
+    {
+      method: 'POST',
+      body: JSON.stringify(cityData),
+      headers: {'Content-Type': 'application/json'}
+    }
+  );
+}
 
 
 //

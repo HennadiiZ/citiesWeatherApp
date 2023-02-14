@@ -10,7 +10,8 @@ import CardHeader from '@mui/material/CardHeader';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { TEMP_CNV } from "../../constants/constants";
+import { TEMP_CNV, CITIES_fb } from "../../constants/constants";
+import { addCityToList } from '../../_lib/api';
 
 const FoundCityItem = ({city}) => {
   const cityCtx = useContext(DataContext);
@@ -43,14 +44,16 @@ const FoundCityItem = ({city}) => {
 
     cityCtx.addCity(cityData);
 
-    fetch(
-      'https://locations-8d6c2-default-rtdb.firebaseio.com/cities.json',
-      {
-        method: 'POST',
-        body: JSON.stringify(cityData),
-        headers: {'Content-Type': 'application/json'}
-      }
-    );
+    // fetch(
+    //   // 'https://locations-8d6c2-default-rtdb.firebaseio.com/cities.json',
+    //   `${CITIES_fb}`,
+    //   {
+    //     method: 'POST',
+    //     body: JSON.stringify(cityData),
+    //     headers: {'Content-Type': 'application/json'}
+    //   }
+    // );
+    addCityToList(cityData)
   };
 
   return (

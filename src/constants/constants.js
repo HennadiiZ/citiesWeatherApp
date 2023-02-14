@@ -1,22 +1,18 @@
+export const TEMP_CNV = 273;
+
+export const CITIES_fb = 'https://locations-8d6c2-default-rtdb.firebaseio.com/cities.json';
+
+export const API_KEY = 'f9a8afece24fc95713882fe8f164ee19';
+// export const API_KEY = 'e07899b8ac29022c34d61a58f51cd3db';
+export const URL_city = 'http://api.openweathermap.org/data/2.5/weather?q=';
+// export const URL_city = 'https://api.openweathermap.org/data/2.5/';
+
+
+
 // export const URL = 'https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.15&appid=';
 // export const URL = 'https://api.openweathermap.org/data/2.5/weather?q=London&mode=xml';
 // export const API_KEY = 'e07899b8ac29022c34d61a58f51cd3db'; // works
-
-export const TEMP_CNV = 273;
-
-
 // export const URL = 'https://api.openweathermap.org/data/2.5/weather?q=London&appid='; // works
-// export const API_KEY = 'f9a8afece24fc95713882fe8f164ee19';
-
-// const string = '';
-
-// export default string;
-
-
-
-export const API_KEY = 'e07899b8ac29022c34d61a58f51cd3db';
-export const URL_city = 'https://api.openweathermap.org/data/2.5/';
 // export const URL_list = 'http://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743&units=metric&APPID=' // works fine
 // export const URL_list = 'http://api.openweathermap.org/data/2.5/group?id=703448,2643743&units=metric&APPID=' // No Moscow
-
 // export const URL_list = 'http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID='

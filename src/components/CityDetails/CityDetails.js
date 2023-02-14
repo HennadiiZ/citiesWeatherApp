@@ -1,7 +1,7 @@
 import classes from './CityDetails.module.css';
 import { useState, useEffect } from 'react';
 
-import { fetchData } from '../../_lib/api';
+import { fetchCities } from '../../_lib/api';
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -19,7 +19,7 @@ const CityDetails = (props) => {
 
   useEffect(() => {
     setIsLoading(true);  
-    fetchData(setLoadedData, setIsLoading);              
+    fetchCities(setLoadedData, setIsLoading);              
   }, []);
 
   const city = loadedData.find(item => +item.id ===  +props.cityId); 
