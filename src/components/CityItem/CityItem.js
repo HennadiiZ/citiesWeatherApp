@@ -8,15 +8,44 @@ import CardHeader from '@mui/material/CardHeader';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { TEMP_CNV } from '../../constants/constants';
+import { TEMP_CNV, JSON_add } from '../../constants/constants';
+
+import { useState, useEffect } from 'react';
+import { fetchCities } from '../../_lib/api';
 
 const CityItem = (props) => {
+  //-------------------------------
+  const [loadedData, setLoadedData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    setIsLoading(true);  
+    fetchCities(setLoadedData, setIsLoading);              
+  }, []);
+  //-------------------------------
 
   const updateWeaterHandler = (e) => {
     e.preventDefault();
   };
+
   const deleteCityHandler = (e) => {
     e.preventDefault();
+
+    for(const key of loadedData) {
+      if (key.id === props.id) {
+        fetch(
+          `https://cities-4f6c1-default-rtdb.firebaseio.com/cities/${key.itemId}${JSON_add}`, 
+          {
+            method: 'DELETE',
+          }
+        )
+        .then(() => {
+          console.log('Item deleted successfully!');
+        })
+        .catch((error) => {
+          console.error('Error deleting item:', error);
+        });
+      } 
+    };
   };
 
   const unix_timestamp = props.dt;
