@@ -1,6 +1,5 @@
 import classes from './CityItem.module.css';
 import { Link } from 'react-router-dom';
-
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,18 +8,21 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { TEMP_CNV, JSON_add } from '../../constants/constants';
-
-import { useState, useEffect } from 'react';
-import { fetchCities } from '../../_lib/api';
+// import { useState, useEffect } from 'react';
+// import { fetchCities } from '../../_lib/api';
+import { useContext } from 'react';
+import DataContext from '../../_store/data-context'; 
 
 const CityItem = (props) => {
+  const cityCtx = useContext(DataContext);
+
   //-------------------------------
-  const [loadedData, setLoadedData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    setIsLoading(true);  
-    fetchCities(setLoadedData, setIsLoading);              
-  }, []);
+  // const [loadedData, setLoadedData] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
+  // useEffect(() => {
+  //   setIsLoading(true);  
+  //   fetchCities(setLoadedData, setIsLoading);              
+  // }, []);
   //-------------------------------
 
   const updateWeaterHandler = (e) => {
@@ -30,7 +32,8 @@ const CityItem = (props) => {
   const deleteCityHandler = (e) => {
     e.preventDefault();
 
-    for(const key of loadedData) {
+    // for(const key of loadedData) {
+    for(const key of cityCtx.cities) {
       if (key.id === props.id) {
         fetch(
           `https://cities-4f6c1-default-rtdb.firebaseio.com/cities/${key.itemId}${JSON_add}`, 

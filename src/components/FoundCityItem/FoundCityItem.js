@@ -1,6 +1,6 @@
-// import classes from './FoundCityItem.module.css';
-// import { useContext } from 'react';
-// import DataContext from '../../_store/data-context'; 
+import classes from './FoundCityItem.module.css';
+import { useContext } from 'react';
+import DataContext from '../../_store/data-context'; 
 import { useNavigate  } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
@@ -14,20 +14,17 @@ import { TEMP_CNV } from "../../constants/constants";
 import { addCityToList, fetchCities } from '../../_lib/api';
 
 const FoundCityItem = ({city}) => {
-  // const cityCtx = useContext(DataContext);
-  // const selectedCity = cityCtx.itemIsSelected(city.id);
-
-
+  const cityCtx = useContext(DataContext);
   const history = useNavigate();
 
-  //---- 
-  const [loadedData, setLoadedData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    setIsLoading(true);  
-    fetchCities(setLoadedData, setIsLoading);              
-  }, []);
-  //---- 
+  // ----------------------------------------------
+  // const [loadedData, setLoadedData] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
+  // useEffect(() => {
+  //   setIsLoading(true);  
+  //   fetchCities(setLoadedData, setIsLoading);              
+  // }, []);
+ // ----------------------------------------------
 
   const unix_timestamp = city.dt;
   const date = new Date(unix_timestamp * 1000);
@@ -54,7 +51,12 @@ const FoundCityItem = ({city}) => {
     };
     // cityCtx.addCity(cityData);
     // ----------------------------------------------- preventing from adding same cities
-    for(const key of loadedData) {
+    // for(const key of loadedData) {
+    //   if ( +key.id === +cityData.id) {
+    //     return;
+    //   } 
+    // }
+    for(const key of cityCtx.cities) {
       if ( +key.id === +cityData.id) {
         return;
       } 

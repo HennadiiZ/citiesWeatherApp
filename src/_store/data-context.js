@@ -1,38 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { fetchCities } from '../_lib/api';
 
 const DataContext = React.createContext({
   cities: [],
   totalCities: 0,
-  addCity: (chosenCity) => {},
-  removeCity: (id) => {},
-  itemIsSelected: (id) => {}
+  loading: false
 });
 
 export const DataContextProvider = (props) => {
-  const [addedCities, setAddedCities] = useState([]);
-
-  const addCityHandler = (chosenCity) => {
-    setAddedCities((prevCity) => {
-      return prevCity.concat(chosenCity);
-    });
-  };
-
-  const removeCityHandler = (itemId) => {
-    setAddedCities((prevCity) => {
-      return prevCity.filter(item => item.id !== itemId);
-    });   
-  };
-
-  const itemIsSelectedHandler = (itemId) => {
-    return addedCities.some(item => item.id === itemId);
-  };
+  const [loadedData, setLoadedData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  
+  useEffect(() => {  
+    setIsLoading(true);    
+    fetchCities(setLoadedData, setIsLoading);              
+  }, []);
 
   const context= {
-    cities: addedCities,
-    totalCities: addedCities.length,
-    addCity: addCityHandler,
-    removeCity: removeCityHandler,
-    itemIsSelected: itemIsSelectedHandler
+    cities: loadedData, //addedCities,
+    totalCities: loadedData.length, //addedCities.length,
+    loading: isLoading
   };
       
   return (
