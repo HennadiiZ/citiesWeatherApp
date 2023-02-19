@@ -11,25 +11,22 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { TEMP_CNV } from "../../constants/constants";
-import { addCityToList, fetchCities } from '../../_lib/api';
+import { addCityToList } from '../../_lib/api';
 
 const FoundCityItem = ({city}) => {
   const cityCtx = useContext(DataContext);
   const history = useNavigate();
 
-  // ----------------------------------------------
-  // const [loadedData, setLoadedData] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // useEffect(() => {
-  //   setIsLoading(true);  
-  //   fetchCities(setLoadedData, setIsLoading);              
-  // }, []);
- // ----------------------------------------------
-
   const unix_timestamp = city.dt;
   const date = new Date(unix_timestamp * 1000);
   const hours = date.getHours();
-  const minutes = date.getMinutes();
+  // const minutes = date.getMinutes();
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = '0' + date.getMinutes();
+  } else {
+    minutes = date.getMinutes();
+  }
 
   const addCityHandler = () => {
     history('/cities/');

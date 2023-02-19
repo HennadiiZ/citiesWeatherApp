@@ -30,7 +30,14 @@ const CityDetails = (props) => {
   const unix_timestamp = cityInfo?.dt;
   const date = new Date(unix_timestamp * 1000);
   const hours = date.getHours();
-  const minutes = date.getMinutes();
+  // const minutes = date.getMinutes();
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = '0' + date.getMinutes();
+  } else {
+    minutes = date.getMinutes();
+  }
+
   const humidity = cityInfo?.main?.humidity;
   const feelsLike = Math.round(cityInfo?.main?.feels_like - TEMP_CNV);
   let day;

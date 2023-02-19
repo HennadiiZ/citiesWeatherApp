@@ -17,8 +17,8 @@ export const DataContextProvider = (props) => {
   }, []);
 
   const context= {
-    cities: loadedData, //addedCities,
-    totalCities: loadedData.length, //addedCities.length,
+    cities: loadedData, 
+    totalCities: loadedData.length, 
     loading: isLoading
   };
       

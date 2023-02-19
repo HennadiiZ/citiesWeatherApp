@@ -1,6 +1,5 @@
 import { API_KEY, CITIES_fb, URL_city, JSON_add } from '../constants/constants';
 
-
 export const fetchCities = async (setLoadedData, setIsLoading) => {
   try {
     const response = await fetch(`${CITIES_fb}${JSON_add}`);
@@ -20,6 +19,9 @@ export const fetchCities = async (setLoadedData, setIsLoading) => {
     console.error("Error:", error.message);
   }
 };
+
+
+
 
 
 

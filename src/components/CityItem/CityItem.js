@@ -54,7 +54,13 @@ const CityItem = (props) => {
   const unix_timestamp = props.dt;
   const date = new Date(unix_timestamp * 1000);
   const hours = date.getHours();
-  const minutes = date.getMinutes();
+  // const minutes = date.getMinutes();
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = '0' + date.getMinutes();
+  } else {
+    minutes = date.getMinutes();
+  }
  
   return (
     <li className={classes.item}>
