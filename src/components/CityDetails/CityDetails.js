@@ -9,46 +9,19 @@ import { TEMP_CNV } from '../../constants/constants';
 
 import { useContext } from 'react';
 import DataContext from '../../_store/data-context'; 
-import { convertedTime } from '../../_helpers/helpers';
+import { convertedTime, showDaysOfWeek } from '../../_helpers/helpers';
 
 const CityDetails = (props) => {
   const cityCtx = useContext(DataContext); 
   // const city = loadedData.find(item => +item.id ===  +props.cityId); 
   const city = cityCtx?.cities?.find(item => +item.id ===  +props.cityId); 
 
-  const cityInfo = city;
   const time = convertedTime(city?.dt);
 
-  const humidity = cityInfo?.main?.humidity;
-  const feelsLike = Math.round(cityInfo?.main?.feels_like - TEMP_CNV);
-  let day;
+  const humidity = city?.main?.humidity;
+  const feelsLike = Math.round(city?.main?.feels_like - TEMP_CNV);
 
-  switch (time.date.getDay()) {
-    case 0:
-      day = "Sunday";
-      break;
-    case 1:
-      day = "Monday";
-      break;
-    case 2:
-      day = "Tuesday";
-      break;
-    case 3:
-      day = "Wednesday";
-      break;
-    case 4:
-      day = "Thursday";
-      break;
-    case 5:
-      day = "Friday";
-      break;
-    case 6:
-      day = "Saturday";
-      break;
-    default:
-      day = '';
-      break;
-  }
+  let day = showDaysOfWeek(time.date.getDay());
 
   // if (isLoading) {
   if (cityCtx.loading) {
