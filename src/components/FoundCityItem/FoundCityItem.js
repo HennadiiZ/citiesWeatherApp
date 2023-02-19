@@ -12,24 +12,33 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { TEMP_CNV } from "../../constants/constants";
 import { addCityToList } from '../../_lib/api';
+import { convertedTime } from '../../_helpers/helpers';
 
 const FoundCityItem = ({city}) => {
   const cityCtx = useContext(DataContext);
   const history = useNavigate();
 
-  const unix_timestamp = city.dt;
-  const date = new Date(unix_timestamp * 1000);
-  const hours = date.getHours();
-  // const minutes = date.getMinutes();
-  let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = '0' + date.getMinutes();
-  } else {
-    minutes = date.getMinutes();
-  }
+  const time = convertedTime(city.dt);
+
+  // const unix_timestamp = city.dt;
+  // const date = new Date(unix_timestamp * 1000);
+  // const hours = date.getHours();
+  // // const minutes = date.getMinutes();
+
+
+
+  // let minutes = convertedMinutes(date);
+
+  // let minutes = date.getMinutes();
+  // if (minutes < 10) {
+  //   minutes = '0' + date.getMinutes();
+  // } else {
+  //   minutes = date.getMinutes();
+  // }
+
 
   const addCityHandler = () => {
-    history('/cities/');
+ 
 
     const cityData = {
       cod: city.cod,
@@ -55,11 +64,13 @@ const FoundCityItem = ({city}) => {
     // }
     for(const key of cityCtx.cities) {
       if ( +key.id === +cityData.id) {
+        history('/cities/');
         return;
       } 
     }
     // -----------------------------------------------
     addCityToList(cityData);
+    history('/cities/');
   };
 
   return (
@@ -104,7 +115,7 @@ const FoundCityItem = ({city}) => {
         >
           <h3 style={{marginRight: '10px'}}>{ Math.round(city.main.temp - TEMP_CNV)} &#8451;</h3>
           {/* <hr /> */}
-          <p>{`${hours}:${minutes}`}</p>
+          <p>{`${time.hours}:${time.minutes}`}</p>
         </Box> 
       </CardContent>
       <CardActions sx={{ backgroundColor: '#bbdefb' }}>

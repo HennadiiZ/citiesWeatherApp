@@ -11,6 +11,7 @@ import { TEMP_CNV } from '../../constants/constants';
 
 import { useContext } from 'react';
 import DataContext from '../../_store/data-context'; 
+import { convertedTime } from '../../_helpers/helpers';
 
 const CityDetails = (props) => {
   // const [loadedData, setLoadedData] = useState([]);
@@ -27,22 +28,24 @@ const CityDetails = (props) => {
   const city = cityCtx?.cities?.find(item => +item.id ===  +props.cityId); 
 
   const cityInfo = city;
-  const unix_timestamp = cityInfo?.dt;
-  const date = new Date(unix_timestamp * 1000);
-  const hours = date.getHours();
-  // const minutes = date.getMinutes();
-  let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = '0' + date.getMinutes();
-  } else {
-    minutes = date.getMinutes();
-  }
+  const time = convertedTime(cityInfo?.dt);
+  // const cityInfo = city;
+  // const unix_timestamp = cityInfo?.dt;
+  // const date = new Date(unix_timestamp * 1000);
+  // const hours = date.getHours();
+  // // const minutes = date.getMinutes();
+  // let minutes = date.getMinutes();
+  // if (minutes < 10) {
+  //   minutes = '0' + date.getMinutes();
+  // } else {
+  //   minutes = date.getMinutes();
+  // }
 
   const humidity = cityInfo?.main?.humidity;
   const feelsLike = Math.round(cityInfo?.main?.feels_like - TEMP_CNV);
   let day;
 
-  switch (date.getDay()) {
+  switch (time.date.getDay()) {
     case 0:
       day = "Sunday";
       break;
@@ -152,7 +155,7 @@ const CityDetails = (props) => {
               alignItems: 'center'
             }}
           >
-            <h3 style={{marginRight: '10px'}}>{`${hours}:${minutes}`}</h3>
+            <h3 style={{marginRight: '10px'}}>{`${time.hours}:${time.minutes}`}</h3>
             <p> {day} </p>
           </Box> 
         </CardContent>

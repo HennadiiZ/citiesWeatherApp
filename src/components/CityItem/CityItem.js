@@ -12,6 +12,7 @@ import { TEMP_CNV, JSON_add } from '../../constants/constants';
 // import { fetchCities } from '../../_lib/api';
 import { useContext } from 'react';
 import DataContext from '../../_store/data-context'; 
+import { convertedTime } from '../../_helpers/helpers';
 
 const CityItem = (props) => {
   const cityCtx = useContext(DataContext);
@@ -49,18 +50,24 @@ const CityItem = (props) => {
         });
       } 
     };
+
+    //
+
+    //
   };
 
-  const unix_timestamp = props.dt;
-  const date = new Date(unix_timestamp * 1000);
-  const hours = date.getHours();
-  // const minutes = date.getMinutes();
-  let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = '0' + date.getMinutes();
-  } else {
-    minutes = date.getMinutes();
-  }
+
+  const time = convertedTime(props.dt);
+  // const unix_timestamp = props.dt;
+  // const date = new Date(unix_timestamp * 1000);
+  // const hours = date.getHours();
+  // // const minutes = date.getMinutes();
+  // let minutes = date.getMinutes();
+  // if (minutes < 10) {
+  //   minutes = '0' + date.getMinutes();
+  // } else {
+  //   minutes = date.getMinutes();
+  // }
  
   return (
     <li className={classes.item}>
@@ -105,7 +112,7 @@ const CityItem = (props) => {
             >
               <p>Temperature: { Math.round(props.main.temp - TEMP_CNV)} &#8451;</p>
               <hr />
-              <p>{`${hours}:${minutes}`}</p>
+              <p>{`${time.hours}:${time.minutes}`}</p>
             </Box> 
           </CardContent>
           <CardActions sx={{ backgroundColor: '#bbdefb' }}>
