@@ -20,26 +20,7 @@ const FoundCityItem = ({city}) => {
 
   const time = convertedTime(city.dt);
 
-  // const unix_timestamp = city.dt;
-  // const date = new Date(unix_timestamp * 1000);
-  // const hours = date.getHours();
-  // // const minutes = date.getMinutes();
-
-
-
-  // let minutes = convertedMinutes(date);
-
-  // let minutes = date.getMinutes();
-  // if (minutes < 10) {
-  //   minutes = '0' + date.getMinutes();
-  // } else {
-  //   minutes = date.getMinutes();
-  // }
-
-
   const addCityHandler = () => {
- 
-
     const cityData = {
       cod: city.cod,
       coord: city.coord,
@@ -57,11 +38,6 @@ const FoundCityItem = ({city}) => {
     };
     // cityCtx.addCity(cityData);
     // ----------------------------------------------- preventing from adding same cities
-    // for(const key of loadedData) {
-    //   if ( +key.id === +cityData.id) {
-    //     return;
-    //   } 
-    // }
     for(const key of cityCtx.cities) {
       if ( +key.id === +cityData.id) {
         history('/cities/');

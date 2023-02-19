@@ -8,23 +8,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { TEMP_CNV, JSON_add } from '../../constants/constants';
-// import { useState, useEffect } from 'react';
-// import { fetchCities } from '../../_lib/api';
 import { useContext } from 'react';
 import DataContext from '../../_store/data-context'; 
 import { convertedTime } from '../../_helpers/helpers';
 
 const CityItem = (props) => {
   const cityCtx = useContext(DataContext);
-
-  //-------------------------------
-  // const [loadedData, setLoadedData] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // useEffect(() => {
-  //   setIsLoading(true);  
-  //   fetchCities(setLoadedData, setIsLoading);              
-  // }, []);
-  //-------------------------------
+  const time = convertedTime(props.dt);
 
   const updateWeaterHandler = (e) => {
     e.preventDefault();
@@ -50,25 +40,8 @@ const CityItem = (props) => {
         });
       } 
     };
-
-    //
-
-    //
   };
 
-
-  const time = convertedTime(props.dt);
-  // const unix_timestamp = props.dt;
-  // const date = new Date(unix_timestamp * 1000);
-  // const hours = date.getHours();
-  // // const minutes = date.getMinutes();
-  // let minutes = date.getMinutes();
-  // if (minutes < 10) {
-  //   minutes = '0' + date.getMinutes();
-  // } else {
-  //   minutes = date.getMinutes();
-  // }
- 
   return (
     <li className={classes.item}>
       <Link to={`/cities/${props.id}`} className={classes.link}>

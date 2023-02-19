@@ -1,6 +1,4 @@
 import classes from './CityDetails.module.css';
-import { useState, useEffect } from 'react';
-import { fetchCities } from '../../_lib/api';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
@@ -14,32 +12,12 @@ import DataContext from '../../_store/data-context';
 import { convertedTime } from '../../_helpers/helpers';
 
 const CityDetails = (props) => {
-  // const [loadedData, setLoadedData] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-
-  // useEffect(() => {
-  //   setIsLoading(true);  
-  //   fetchCities(setLoadedData, setIsLoading);              
-  // }, []);
-
-  const cityCtx = useContext(DataContext); //
-
+  const cityCtx = useContext(DataContext); 
   // const city = loadedData.find(item => +item.id ===  +props.cityId); 
   const city = cityCtx?.cities?.find(item => +item.id ===  +props.cityId); 
 
   const cityInfo = city;
-  const time = convertedTime(cityInfo?.dt);
-  // const cityInfo = city;
-  // const unix_timestamp = cityInfo?.dt;
-  // const date = new Date(unix_timestamp * 1000);
-  // const hours = date.getHours();
-  // // const minutes = date.getMinutes();
-  // let minutes = date.getMinutes();
-  // if (minutes < 10) {
-  //   minutes = '0' + date.getMinutes();
-  // } else {
-  //   minutes = date.getMinutes();
-  // }
+  const time = convertedTime(city?.dt);
 
   const humidity = cityInfo?.main?.humidity;
   const feelsLike = Math.round(cityInfo?.main?.feels_like - TEMP_CNV);
