@@ -9,16 +9,22 @@ import Typography from '@mui/material/Typography';
 import ErrorTwoToneIcon from '@mui/icons-material/ErrorTwoTone';
 import { TEMP_CNV } from '../../constants/constants';
 
+import { useContext } from 'react';
+import DataContext from '../../_store/data-context'; 
+
 const CityDetails = (props) => {
-  const [loadedData, setLoadedData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [loadedData, setLoadedData] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    setIsLoading(true);  
-    fetchCities(setLoadedData, setIsLoading);              
-  }, []);
+  // useEffect(() => {
+  //   setIsLoading(true);  
+  //   fetchCities(setLoadedData, setIsLoading);              
+  // }, []);
 
-  const city = loadedData.find(item => +item.id ===  +props.cityId); 
+  const cityCtx = useContext(DataContext); //
+
+  // const city = loadedData.find(item => +item.id ===  +props.cityId); 
+  const city = cityCtx?.cities?.find(item => +item.id ===  +props.cityId); 
 
   const cityInfo = city;
   const unix_timestamp = cityInfo?.dt;
@@ -56,7 +62,8 @@ const CityDetails = (props) => {
       break;
   }
 
-  if (isLoading) {
+  // if (isLoading) {
+  if (cityCtx.loading) {
     return (
       <section className={classes.item__alert}>
         <p>Loading...</p>   
@@ -64,7 +71,8 @@ const CityDetails = (props) => {
     );
   }
 
-  if (!city && !isLoading) {
+  // if (!city && !isLoading) {
+  if (!city && !cityCtx.loading) {
     return (
       <section className={classes.item__alert}>
         <div>

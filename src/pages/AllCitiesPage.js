@@ -25,6 +25,7 @@ const AllCitiesPage = () => {
         {/* {isLoading && 'Loading...'}
         {!isLoading && loadedData.length === 0 && <p>No added cities.</p>}
         {!isLoading && loadedData.length > 0 && <CitiesList cities={loadedData}/>} */}
+        
         {cityCtx.loading && 'Loading...'}
         {!cityCtx.loading && cityCtx.cities.length === 0 && <p>No added cities.</p>}
         {!cityCtx.loading && cityCtx.cities.length > 0 && <CitiesList cities={cityCtx.cities}/>}
