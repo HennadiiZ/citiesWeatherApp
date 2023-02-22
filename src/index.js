@@ -15,6 +15,15 @@ root.render(
       </React.StrictMode>
     </BrowserRouter>
   </DataContextProvider>
+
+  
+  // <BrowserRouter>
+  // <DataContextProvider>
+  //   <React.StrictMode>
+  //     <App />
+  //   </React.StrictMode>
+  // </DataContextProvider>
+  // </BrowserRouter>
 );
 
 // reportWebVitals();

@@ -15,6 +15,7 @@ export const fetchCities = async (setLoadedData, setIsLoading) => {
     }
     setIsLoading(false);
     setLoadedData(listOfCities);
+    console.log('listOfCities', listOfCities);
   } catch (error) {
     console.error("Error:", error.message);
   }

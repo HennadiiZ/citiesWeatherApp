@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { fetchCities } from '../_lib/api';
 
 const DataContext = React.createContext({
   cities: [],
   totalCities: 0,
-  loading: false
+  loading: false,
+  addCity: (newCity) => {},
+  removeCity: (id) => {},
 });
 
 export const DataContextProvider = (props) => {
@@ -12,14 +14,41 @@ export const DataContextProvider = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   
   useEffect(() => {  
-    setIsLoading(true);    
-    fetchCities(setLoadedData, setIsLoading);              
+    setIsLoading(true);  
+    fetchCities(setLoadedData, setIsLoading); 
   }, []);
+
+  const addCityHandler = (newCity) => {
+    setLoadedData((prevCity) => {
+      return prevCity.concat(newCity);
+    });
+    // setLoadedData([...loadedData, newCity]);
+  };
+
+  const removeCityHandler = (itemId) => {
+    // setLoadedData((prevCity) => {
+    //   return prevCity.filter(item => item.id !== itemId);
+    // }); 
+    setLoadedData((prevCity) => {
+      return prevCity.filter(item => item.id !== itemId);
+    }); 
+  };
+
+  // const context = useMemo(
+  //   () => ({
+  //     cities: loadedData, 
+  //     totalCities: loadedData.length, 
+  //     loading: isLoading
+  //   }),
+  //   [loadedData, isLoading]
+  // );
 
   const context= {
     cities: loadedData, 
     totalCities: loadedData.length, 
-    loading: isLoading
+    loading: isLoading,
+    addCity: addCityHandler,
+    removeCity: removeCityHandler,
   };
       
   return (
