@@ -19,10 +19,10 @@ export const DataContextProvider = (props) => {
   }, []);
 
   const addCityHandler = (newCity) => {
-    setLoadedData((prevCity) => {
-      return prevCity.concat(newCity);
-    });
-    // setLoadedData([...loadedData, newCity]);
+    // setLoadedData((prevCity) => {
+    //   return prevCity.concat(newCity);
+    // });
+    setLoadedData([...loadedData, newCity]);
   };
 
   const removeCityHandler = (itemId) => {
@@ -69,7 +69,26 @@ export default DataContext;
 
 
 
+// const addCityHandler = (newCity) => {
+//   setLoadedData((prevCity) => {
+//     return prevCity.concat(newCity);
+//   });
+// };
+// const removeCityHandler = (itemId) => {
+//   setLoadedData((prevCity) => {
+//     return prevCity.filter(item => item.id !== itemId);
+//   }); 
+// };
 
+
+
+// const addCityHandler = (newCity) => {
+//   setLoadedData([...loadedData, newCity]);
+// };
+// const removeCityHandler = (itemId) => {
+//   const newList = loadedData.filter(item => item.id !== itemId);
+//   setLoadedData(newList);
+// };
 
 
 
