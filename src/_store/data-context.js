@@ -7,6 +7,7 @@ const DataContext = React.createContext({
   loading: false,
   addCity: (newCity) => {},
   removeCity: (id) => {},
+  updateCity: (id) => {}, //-------------------------
 });
 
 export const DataContextProvider = (props) => {
@@ -28,12 +29,19 @@ export const DataContextProvider = (props) => {
     }); 
   };
 
+  const updateCityHandler = (itemId) => {  //-------------------------
+    // setCities((prevCity) => {
+    //   return prevCity.filter(item => item.id !== itemId);
+    // }); 
+  };
+
   const context= {
     cities: cities, 
     totalCities: cities.length, 
     loading: isLoading,
     addCity: addCityHandler,
     removeCity: removeCityHandler,
+    updateCity: updateCityHandler, //-------------------------
   };
       
   return (
