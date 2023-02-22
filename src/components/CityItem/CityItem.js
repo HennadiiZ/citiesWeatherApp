@@ -22,13 +22,13 @@ const CityItem = (props) => {
 
   const deleteCityHandler = (e) => {
     e.preventDefault();
-
-    // for(const key of loadedData) {
     
     for(const key of cityCtx.cities) {
 
       if (key.id === props.id) {
-        cityCtx.removeCity(key.id); //-------------
+
+        cityCtx.removeCity(key.id); 
+        
         fetch(
           `https://cities-4f6c1-default-rtdb.firebaseio.com/cities/${key.itemId}${JSON_add}`, 
           {

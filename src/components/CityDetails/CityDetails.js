@@ -6,24 +6,19 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ErrorTwoToneIcon from '@mui/icons-material/ErrorTwoTone';
 import { TEMP_CNV } from '../../constants/constants';
-
 import { useContext } from 'react';
 import DataContext from '../../_store/data-context'; 
 import { convertedTime, showDaysOfWeek } from '../../_helpers/helpers';
 
 const CityDetails = (props) => {
   const cityCtx = useContext(DataContext); 
-  // const city = loadedData.find(item => +item.id ===  +props.cityId); 
   const city = cityCtx?.cities?.find(item => +item.id ===  +props.cityId); 
-
   const time = convertedTime(city?.dt);
-
   const humidity = city?.main?.humidity;
   const feelsLike = Math.round(city?.main?.feels_like - TEMP_CNV);
 
   let day = showDaysOfWeek(time.date.getDay());
 
-  // if (isLoading) {
   if (cityCtx.loading) {
     return (
       <section className={classes.item__alert}>
@@ -32,7 +27,6 @@ const CityDetails = (props) => {
     );
   }
 
-  // if (!city && !isLoading) {
   if (!city && !cityCtx.loading) {
     return (
       <section className={classes.item__alert}>
