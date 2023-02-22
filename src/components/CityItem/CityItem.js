@@ -23,16 +23,18 @@ const CityItem = (props) => {
 
       if (key.id === props.id) {
 
-        console.log(key);
-        cityCtx.updateCity(key.id); 
+        console.log('key', key);
+        cityCtx.updateCity(key, key.id); 
         
         fetch(
           `https://cities-4f6c1-default-rtdb.firebaseio.com/cities/${key.itemId}${JSON_add}`, 
           {
-            method: 'PUT',
-            body: JSON.stringify({
-              city: key
-            }),
+            // method: 'PUT',
+            method: 'PATCH',
+            // body: JSON.stringify({
+            //   city: key
+            // }),
+            body: JSON.stringify({...key}),
             headers: {
               'Content-Type': 'application/json',
             },

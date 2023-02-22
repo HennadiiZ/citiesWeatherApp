@@ -13,6 +13,8 @@ const DataContext = React.createContext({
 export const DataContextProvider = (props) => {
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  // console.log(cities);
   
   useEffect(() => {  
     setIsLoading(true);  
@@ -29,11 +31,18 @@ export const DataContextProvider = (props) => {
     }); 
   };
 
-  const updateCityHandler = (itemId) => {  //-------------------------
-    // setCities((prevCity) => {
-    //   return prevCity.filter(item => item.id !== itemId);
-    // }); 
-    console.log(itemId);
+  const updateCityHandler = (city, itemId) => {  //-------------------------  
+    cities.forEach((item, index) => {  
+      let cityItem = item.id === itemId;
+
+      if (cityItem) {
+        console.log(index);
+        cities.splice(index, 1, city);
+        console.log(cities)
+      }
+    });
+
+    console.log(city, itemId);
   };
 
   const context= {
