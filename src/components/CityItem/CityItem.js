@@ -23,6 +23,7 @@ const CityItem = (props) => {
 
       if (key.id === props.id) {
 
+        console.log(key);
         cityCtx.updateCity(key.id); 
         
         fetch(
@@ -30,7 +31,7 @@ const CityItem = (props) => {
           {
             method: 'PUT',
             body: JSON.stringify({
-              city: cityCtx.cities[key]
+              city: key
             }),
             headers: {
               'Content-Type': 'application/json',

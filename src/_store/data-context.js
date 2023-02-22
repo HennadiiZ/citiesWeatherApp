@@ -33,6 +33,7 @@ export const DataContextProvider = (props) => {
     // setCities((prevCity) => {
     //   return prevCity.filter(item => item.id !== itemId);
     // }); 
+    console.log(itemId);
   };
 
   const context= {
