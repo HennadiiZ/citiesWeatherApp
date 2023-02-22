@@ -1,6 +1,5 @@
 import classes from './CityItem.module.css';
 import { Link } from 'react-router-dom';
-
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,19 +8,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { TEMP_CNV, JSON_add } from '../../constants/constants';
-
-import { useState, useEffect } from 'react';
-import { fetchCities } from '../../_lib/api';
+import { useContext } from 'react';
+import DataContext from '../../_store/data-context'; 
+import { convertedTime } from '../../_helpers/helpers';
 
 const CityItem = (props) => {
-  //-------------------------------
-  const [loadedData, setLoadedData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    setIsLoading(true);  
-    fetchCities(setLoadedData, setIsLoading);              
-  }, []);
-  //-------------------------------
+  const cityCtx = useContext(DataContext);
+  const time = convertedTime(props.dt);
 
   const updateWeaterHandler = (e) => {
     e.preventDefault();
@@ -29,9 +22,13 @@ const CityItem = (props) => {
 
   const deleteCityHandler = (e) => {
     e.preventDefault();
+    
+    for(const key of cityCtx.cities) {
 
-    for(const key of loadedData) {
       if (key.id === props.id) {
+
+        cityCtx.removeCity(key.id); 
+        
         fetch(
           `https://cities-4f6c1-default-rtdb.firebaseio.com/cities/${key.itemId}${JSON_add}`, 
           {
@@ -48,11 +45,6 @@ const CityItem = (props) => {
     };
   };
 
-  const unix_timestamp = props.dt;
-  const date = new Date(unix_timestamp * 1000);
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
- 
   return (
     <li className={classes.item}>
       <Link to={`/cities/${props.id}`} className={classes.link}>
@@ -96,7 +88,7 @@ const CityItem = (props) => {
             >
               <p>Temperature: { Math.round(props.main.temp - TEMP_CNV)} &#8451;</p>
               <hr />
-              <p>{`${hours}:${minutes}`}</p>
+              <p>{`${time.hours}:${time.minutes}`}</p>
             </Box> 
           </CardContent>
           <CardActions sx={{ backgroundColor: '#bbdefb' }}>

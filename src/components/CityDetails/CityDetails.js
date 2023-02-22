@@ -1,6 +1,4 @@
 import classes from './CityDetails.module.css';
-import { useState, useEffect } from 'react';
-import { fetchCities } from '../../_lib/api';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
@@ -8,55 +6,20 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ErrorTwoToneIcon from '@mui/icons-material/ErrorTwoTone';
 import { TEMP_CNV } from '../../constants/constants';
+import { useContext } from 'react';
+import DataContext from '../../_store/data-context'; 
+import { convertedTime, showDaysOfWeek } from '../../_helpers/helpers';
 
 const CityDetails = (props) => {
-  const [loadedData, setLoadedData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const cityCtx = useContext(DataContext); 
+  const city = cityCtx?.cities?.find(item => +item.id ===  +props.cityId); 
+  const time = convertedTime(city?.dt);
+  const humidity = city?.main?.humidity;
+  const feelsLike = Math.round(city?.main?.feels_like - TEMP_CNV);
 
-  useEffect(() => {
-    setIsLoading(true);  
-    fetchCities(setLoadedData, setIsLoading);              
-  }, []);
+  let day = showDaysOfWeek(time.date.getDay());
 
-  const city = loadedData.find(item => +item.id ===  +props.cityId); 
-
-  const cityInfo = city;
-  const unix_timestamp = cityInfo?.dt;
-  const date = new Date(unix_timestamp * 1000);
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const humidity = cityInfo?.main?.humidity;
-  const feelsLike = Math.round(cityInfo?.main?.feels_like - TEMP_CNV);
-  let day;
-
-  switch (date.getDay()) {
-    case 0:
-      day = "Sunday";
-      break;
-    case 1:
-      day = "Monday";
-      break;
-    case 2:
-      day = "Tuesday";
-      break;
-    case 3:
-      day = "Wednesday";
-      break;
-    case 4:
-      day = "Thursday";
-      break;
-    case 5:
-      day = "Friday";
-      break;
-    case 6:
-      day = "Saturday";
-      break;
-    default:
-      day = '';
-      break;
-  }
-
-  if (isLoading) {
+  if (cityCtx.loading) {
     return (
       <section className={classes.item__alert}>
         <p>Loading...</p>   
@@ -64,7 +27,7 @@ const CityDetails = (props) => {
     );
   }
 
-  if (!city && !isLoading) {
+  if (!city && !cityCtx.loading) {
     return (
       <section className={classes.item__alert}>
         <div>
@@ -137,7 +100,7 @@ const CityDetails = (props) => {
               alignItems: 'center'
             }}
           >
-            <h3 style={{marginRight: '10px'}}>{`${hours}:${minutes}`}</h3>
+            <h3 style={{marginRight: '10px'}}>{`${time.hours}:${time.minutes}`}</h3>
             <p> {day} </p>
           </Box> 
         </CardContent>

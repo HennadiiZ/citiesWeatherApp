@@ -1,8 +1,6 @@
-// import classes from './FoundCityItem.module.css';
-// import { useContext } from 'react';
-// import DataContext from '../../_store/data-context'; 
+import { useContext } from 'react';
+import DataContext from '../../_store/data-context'; 
 import { useNavigate  } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -11,32 +9,15 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { TEMP_CNV } from "../../constants/constants";
-import { addCityToList, fetchCities } from '../../_lib/api';
+import { addCityToList } from '../../_lib/api';
+import { convertedTime } from '../../_helpers/helpers';
 
 const FoundCityItem = ({city}) => {
-  // const cityCtx = useContext(DataContext);
-  // const selectedCity = cityCtx.itemIsSelected(city.id);
-
-
+  const cityCtx = useContext(DataContext);
   const history = useNavigate();
-
-  //---- 
-  const [loadedData, setLoadedData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    setIsLoading(true);  
-    fetchCities(setLoadedData, setIsLoading);              
-  }, []);
-  //---- 
-
-  const unix_timestamp = city.dt;
-  const date = new Date(unix_timestamp * 1000);
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
+  const time = convertedTime(city.dt);
 
   const addCityHandler = () => {
-    history('/cities/');
-
     const cityData = {
       cod: city.cod,
       coord: city.coord,
@@ -52,15 +33,17 @@ const FoundCityItem = ({city}) => {
       visibility: city.visibility,
       clouds: city.clouds
     };
-    // cityCtx.addCity(cityData);
-    // ----------------------------------------------- preventing from adding same cities
-    for(const key of loadedData) {
+
+    for(const key of cityCtx.cities) {
       if ( +key.id === +cityData.id) {
+        history('/cities/');
         return;
       } 
     }
-    // -----------------------------------------------
+
     addCityToList(cityData);
+    cityCtx.addCity(cityData);
+    history('/cities/');
   };
 
   return (
@@ -105,7 +88,7 @@ const FoundCityItem = ({city}) => {
         >
           <h3 style={{marginRight: '10px'}}>{ Math.round(city.main.temp - TEMP_CNV)} &#8451;</h3>
           {/* <hr /> */}
-          <p>{`${hours}:${minutes}`}</p>
+          <p>{`${time.hours}:${time.minutes}`}</p>
         </Box> 
       </CardContent>
       <CardActions sx={{ backgroundColor: '#bbdefb' }}>
