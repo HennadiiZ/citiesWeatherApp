@@ -15,9 +15,7 @@ import { convertedTime } from '../../_helpers/helpers';
 const CityItem = (props) => {
   const cityCtx = useContext(DataContext);
   const time = convertedTime(props.dt);
-
-
-
+  
 //------------------------- -------------------------
   const updateWeaterHandler = (e) => {  
     e.preventDefault();
@@ -40,7 +38,7 @@ const CityItem = (props) => {
     //   } 
     // };
   }; 
-//------------------------- ------------------------- -------------------------
+//------------------------- ------------------------- 
 
   const deleteCityHandler = (e) => {
     e.preventDefault();
