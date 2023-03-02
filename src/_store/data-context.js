@@ -7,11 +7,14 @@ const DataContext = React.createContext({
   loading: false,
   addCity: (newCity) => {},
   removeCity: (id) => {},
+  updateCity: (id) => {}, //-------------------------
 });
 
 export const DataContextProvider = (props) => {
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  // console.log(cities);
   
   useEffect(() => {  
     setIsLoading(true);  
@@ -28,12 +31,28 @@ export const DataContextProvider = (props) => {
     }); 
   };
 
+  const updateCityHandler = (itemId, city) => {  //-------------------------  
+    // let idx;
+    // cities.forEach((item, index) => {  
+
+    //   if (item.id === itemId) {
+    //     // cities.splice(index, 1, city);
+    //     // console.log(cities)
+    //     idx = index;
+    //   }
+    // });
+
+    // cities.splice(idx, 1, city);
+    // console.log(city, itemId);
+  };
+
   const context= {
     cities: cities, 
     totalCities: cities.length, 
     loading: isLoading,
     addCity: addCityHandler,
     removeCity: removeCityHandler,
+    updateCity: updateCityHandler, //-------------------------
   };
       
   return (
