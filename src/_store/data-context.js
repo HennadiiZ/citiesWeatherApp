@@ -31,18 +31,19 @@ export const DataContextProvider = (props) => {
     }); 
   };
 
-  const updateCityHandler = (city, itemId) => {  //-------------------------  
-    cities.forEach((item, index) => {  
-      let cityItem = item.id === itemId;
+  const updateCityHandler = (itemId, city) => {  //-------------------------  
+    // let idx;
+    // cities.forEach((item, index) => {  
 
-      if (cityItem) {
-        console.log(index);
-        cities.splice(index, 1, city);
-        console.log(cities)
-      }
-    });
+    //   if (item.id === itemId) {
+    //     // cities.splice(index, 1, city);
+    //     // console.log(cities)
+    //     idx = index;
+    //   }
+    // });
 
-    console.log(city, itemId);
+    // cities.splice(idx, 1, city);
+    // console.log(city, itemId);
   };
 
   const context= {

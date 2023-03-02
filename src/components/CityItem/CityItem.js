@@ -16,39 +16,31 @@ const CityItem = (props) => {
   const cityCtx = useContext(DataContext);
   const time = convertedTime(props.dt);
 
-  const updateWeaterHandler = (e) => { //------------------------- ------------------------- 
+
+
+//------------------------- -------------------------
+  const updateWeaterHandler = (e) => {  
     e.preventDefault();
 
-    for(const key of cityCtx.cities) {
+    // for(const key of cityCtx.cities) {
 
-      if (key.id === props.id) {
-
-        console.log('key', key);
-        cityCtx.updateCity(key, key.id); 
+    //   if (key.id === props.id) {
+    //     cityCtx.updateCity(key.id, key); 
         
-        fetch(
-          `https://cities-4f6c1-default-rtdb.firebaseio.com/cities/${key.itemId}${JSON_add}`, 
-          {
-            // method: 'PUT',
-            method: 'PATCH',
-            // body: JSON.stringify({
-            //   city: key
-            // }),
-            body: JSON.stringify({...key}),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        )
-        .then(() => {
-          console.log('Item updated successfully!');
-        })
-        .catch((error) => {
-          console.error('Error updating item:', error);
-        });
-      } 
-    };
-  }; //------------------------- ------------------------- -------------------------
+    //     fetch(
+    //       `https://cities-4f6c1-default-rtdb.firebaseio.com/cities/${key.itemId}${JSON_add}`, 
+    //       {
+    //         method: 'PATCH',
+    //         body: JSON.stringify(key),
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //         },
+    //       }
+    //     )
+    //   } 
+    // };
+  }; 
+//------------------------- ------------------------- -------------------------
 
   const deleteCityHandler = (e) => {
     e.preventDefault();
