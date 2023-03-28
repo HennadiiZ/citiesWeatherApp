@@ -1,4 +1,5 @@
 import { API_KEY, CITIES_fb, URL_city, JSON_add } from '../constants/constants';
+// https://cities-4f6c1-default-rtdb.firebaseio.com/
 
 export const fetchCities = async (setLoadedData, setIsLoading) => {
   try {
