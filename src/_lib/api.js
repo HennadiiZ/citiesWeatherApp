@@ -25,11 +25,11 @@ export const fetchCities = async (setLoadedData, setIsLoading) => {
 export function fetchCityByName(city, setLoadedData) {
   fetch(`${URL_city}${city}&appid=${API_KEY}`,
   //
-  { 
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    }
-  }
+  // { 
+  //   headers: {
+  //     'Access-Control-Allow-Origin': '*'
+  //   }
+  // }
   //
   )
   .then((response) => {
