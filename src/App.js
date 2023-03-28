@@ -32,3 +32,4 @@ export default App;
 
 
 // npm install gh-pages --save-dev
+// npm run deploy

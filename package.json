@@ -2,6 +2,7 @@
   "homepage": "http://HennadiiZ.github.io/citiesWeatherApp",
   "name": "city-weather",
   "version": "0.1.0",
+  "proxy": "https://api.openweathermap.org",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
